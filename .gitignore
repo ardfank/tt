@@ -1,4 +1,4 @@
 node_modules/*
-worker.js
+#worker.js
 *.json
 # tapi/*
