@@ -1,0 +1,8 @@
+name = "tapi"
+main = "src/worker.js"
+compatibility_date = "2024-04-15"
+workers_dev = true
+
+[[routes]]
+pattern = "tt.networkreverse.com/tapi"
+zone_name = "networkreverse.com"
