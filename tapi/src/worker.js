@@ -90,6 +90,8 @@ export default {
 								"title":element.original_client_text.markup_text??"",
 								"view_count":element.statistics.play_count??0,
 								"timestamp":element.create_time??1713330775,
+								"bodydance_score":element.bodydance_score??0,
+								"cover":element.video.dynamic_cover.url_list[0]??"",
 								"format":[],
 						}
 						if (typeof element.video.download_addr !== 'undefined'){
@@ -105,6 +107,22 @@ export default {
 									}
 									formats.push(format);
 								}
+							});
+						}
+						if (typeof element.video.misc_download_addrs !== 'undefined'){
+							let misc=JSON.parse(element.video.misc_download_addrs);
+							misc.suffix_scene.url_list.forEach(e => {
+									if(check(formats,'url',e)===false){
+										let format={
+												"url":e,
+												"format_note":"MISC",
+												"vcodec":"h264",
+												"format":misc.suffix_scene.url_key,
+												"filesize":misc.suffix_scene.data_size??0,
+												"resolution":"~"+(misc.suffix_scene.width??0)+"x"+(misc.suffix_scene.height??0),
+										}
+										formats.push(format);
+									};
 							});
 						}
 						if (typeof element.video.play_addr !== 'undefined'){
@@ -132,22 +150,6 @@ export default {
 												"format":element.video.play_addr_h264.url_key,
 												"filesize":element.video.play_addr_h264.data_size??0,
 												"resolution":"~"+(element.video.play_addr_h264.width??0)+"x"+(element.video.play_addr_h264.height??0),
-										}
-										formats.push(format);
-									};
-							});
-						}
-						if (typeof element.video.misc_download_addrs !== 'undefined'){
-							let misc=JSON.parse(element.video.misc_download_addrs);
-							misc.suffix_scene.url_list.forEach(e => {
-									if(check(formats,'url',e)===false){
-										let format={
-												"url":e,
-												"format_note":"MISC",
-												"vcodec":"h264",
-												"format":misc.suffix_scene.url_key,
-												"filesize":misc.suffix_scene.data_size??0,
-												"resolution":"~"+(misc.suffix_scene.width??0)+"x"+(misc.suffix_scene.height??0),
 										}
 										formats.push(format);
 									};

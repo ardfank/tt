@@ -26,13 +26,33 @@
 <title>Tiktok Video Downloader - Network Reverse</title>
 <style>
 body{background-color:#000;background-attachment:fixed;height:900px;color:#123;font: medium calibri;background-image:radial-gradient(at 0 35%, #000 72%, #f80 74%,#fff 75%,#000 79%);}
+#cont{text-align:center}
+#video{margin:0 auto}
+#link{width: 90vw;
+    height: 50vh;
+    display: flex;
+    flex-flow: column;
+    text-align: center;}
+#link a {
+    background: chocolate;
+    background-image: radial-gradient(black, transparent);
+    margin: 5px auto;
+    padding: 15px;
+    font: 20px arial;
+    border-radius: 25px;
+    width: 80vw;
+    color: aliceblue;
+}
 ::-webkit-scrollbar{width:5px;height:5px;}::-webkit-scrollbar-track{background:gainsboro;border-radius:5px;}::-webkit-scrollbar-thumb{background:rgba(255,0,0,.5);border-radius:5px;}::-webkit-scrollbar-thumb:hover{background:#830;}
 </style>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-<input id='vid' type='text' style='width:80vh' placeholder='Ex: '></input>
-<div id='test' style='width:100vw;height:100vh;'></div>
+<div id='cont'>
+<input id='vid' type='text' style='width:80vw' placeholder='Ex: '></input>
+<div id='test' style='width:90vw;height:40vh;display:flex'></div>
+<div id='link'></div>
+</div>
 <script type="text/javascript" src="./ss.js"></script>
 </body>
 </html>
