@@ -92,8 +92,24 @@ export default {
 								"timestamp":element.create_time??1713330775,
 								"format":[],
 						}
+						if (typeof element.video.download_addr !== 'undefined'){
+							element.video.download_addr.url_list.forEach(e => {
+								if(check(formats,'url',e)===false){
+									let format={
+											"url":e,
+											"format_note":"Wmarked",
+											"vcodec":"h264",
+											"format":element.video.download_addr.url_key,
+											"filesize":element.video.download_addr.data_size??0,
+											"resolution":"~"+(element.video.play_addr.width??0)+"x"+(element.video.play_addr.height??0),
+									}
+									formats.push(format);
+								}
+							});
+						}
 						if (typeof element.video.play_addr !== 'undefined'){
 							element.video.play_addr.url_list.forEach(e => {
+								if(check(formats,'url',e)===false){
 									let format={
 											"url":e,
 											"format_note":"Direct",
@@ -103,21 +119,7 @@ export default {
 											"resolution":(element.video.play_addr.width??0)+"x"+(element.video.play_addr.height??0),
 									}
 									formats.push(format);
-							});
-						}
-						if (typeof element.video.download_addr !== 'undefined'){
-							element.video.download_addr.url_list.forEach(e => {
-									if(check(formats,'url',e)===false){
-										let format={
-												"url":e,
-												"format_note":"Wmarked",
-												"vcodec":"h264",
-												"format":element.video.download_addr.url_key,
-												"filesize":element.video.download_addr.data_size??0,
-												"resolution":"~"+(element.video.play_addr.width??0)+"x"+(element.video.play_addr.height??0),
-										}
-										formats.push(format);
-									};
+								}
 							});
 						}
 						if (typeof element.video.play_addr_h264 !== 'undefined'){
@@ -135,21 +137,6 @@ export default {
 									};
 							});
 						}
-						if (typeof element.video.play_addr_bytevc1 !== 'undefined'){
-							element.video.play_addr_bytevc1.url_list.forEach(e => {
-									if(check(formats,'url',e)===false){
-										let format={
-												"url":e,
-												"format_note":"H265",
-												"vcodec":"h265",
-												"format":element.video.play_addr_bytevc1.url_key,
-												"filesize":element.video.play_addr_bytevc1.data_size??0,
-												"resolution":"~"+(element.video.play_addr_bytevc1.width??0)+"x"+(element.video.play_addr_bytevc1.height??0),
-										}
-										formats.push(format);
-									};
-							});
-						}
 						if (typeof element.video.misc_download_addrs !== 'undefined'){
 							let misc=JSON.parse(element.video.misc_download_addrs);
 							misc.suffix_scene.url_list.forEach(e => {
@@ -161,6 +148,21 @@ export default {
 												"format":misc.suffix_scene.url_key,
 												"filesize":misc.suffix_scene.data_size??0,
 												"resolution":"~"+(misc.suffix_scene.width??0)+"x"+(misc.suffix_scene.height??0),
+										}
+										formats.push(format);
+									};
+							});
+						}
+						if (typeof element.video.play_addr_bytevc1 !== 'undefined'){
+							element.video.play_addr_bytevc1.url_list.forEach(e => {
+									if(check(formats,'url',e)===false){
+										let format={
+												"url":e,
+												"format_note":"H265",
+												"vcodec":"h265",
+												"format":element.video.play_addr_bytevc1.url_key,
+												"filesize":element.video.play_addr_bytevc1.data_size??0,
+												"resolution":"~"+(element.video.play_addr_bytevc1.width??0)+"x"+(element.video.play_addr_bytevc1.height??0),
 										}
 										formats.push(format);
 									};
