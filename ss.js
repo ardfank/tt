@@ -14,7 +14,7 @@ $(document).ready(function(){
       im=data;
     }).done(function(){
       im.format.forEach(el=>{
-        $('#link').append("<a href='"+el.url+"' download='"+im.uploader+"-"+im.id+"'>"+el.resolution+"-"+el.filesize+"-"+el.vcodec+"-"+el.format_note+"</a>");
+        $('#link').prepend("<a href='"+el.url+"' download='"+im.uploader+"-"+im.id+"'>"+el.resolution+"-"+el.filesize+"-"+el.vcodec+"-"+el.format_note+"</a>");
       })
       $('#test').html("<video preload='metadata' id='video' loop muted controls src='"+im.format[im.format.length-1].url+"' onerror='gg(this.videoHeight,im.format.length-1)' onloadedmetadata='gg(this.videoHeight,im.format.length-1)'></video>");
     });
