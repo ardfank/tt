@@ -53,8 +53,15 @@ async function rud(u){
     $('#gal').append("<div class='responsive'><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='red(\""+radf.video_id+"\")'></video></div>");
   }
 }
+async function rsd(u){
+  let rad = await fetch('https://www.tikwm.com/api/feed/search?keywords='+u+'&count=8');
+  let radj = await rad.json();
+  for(const radf of radj.data.videos){
+    $('#gal').append("<div class='responsive'><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='red(\""+radf.video_id+"\")'></video></div>");
+  }
+}
 async function red(s,u){
-  $('#res').fadeIn();$('#ult').fadeOut();
+  $('#res').fadeIn();$('#ult').fadeOut(); $('#link').html("");
   $.post('https://tt.networkreverse.com/tapi', {vid:s},function(data) {
     im=data;
   }).done(function(){
@@ -80,11 +87,11 @@ $(document).ready(function(){
     rad();
   }else{
     let idv=query.q.match(/https:\/\/www.tiktok.com\/(.*)\/video\/(\d+)/);
-    console.log(idv>1);
-    if(idv[2]!==null){
+    // console.log();
+    if(idv!==null && idv[2]!==null){
       red(idv[2],idv[1]);
     }else{
-      rad();
+      rsd(query.q);
     }
   }
   // rad();
