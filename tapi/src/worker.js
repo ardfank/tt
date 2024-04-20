@@ -85,7 +85,7 @@ export default {
 								"uploader":element.author.unique_id,
 								"uploader_id":element.author.uid,
 								"fulltitle":element.desc??"",
-								"title":element.original_client_text.markup_text??"",
+								"title":element.original_client_text?element.original_client_text.markup_text:"",
 								"view_count":element.statistics.play_count??0,
 								"timestamp":element.create_time??1713330775,
 								"bodydance_score":element.bodydance_score??0,

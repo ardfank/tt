@@ -43,21 +43,21 @@ async function rad(){
   let rad = await fetch('https://www.tikwm.com/api/feed/list?region='+region.replace('en','id')+'&count=4');
   let radj = await rad.json();
   for(const radf of radj.data){
-    $('#gal').append("<div class='responsive'><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='red(\""+radf.video_id+"\")'></video></div>");
+    $('#gal').append("<div class='responsive'><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='red(\""+radf.video_id+"\",\""+radf.author.unique_id+"\")'></video></div>");
   }
 }
 async function rud(u){
   let rad = await fetch('https://www.tikwm.com/api/user/posts?unique_id='+u+'&count=8');
   let radj = await rad.json();
   for(const radf of radj.data.videos){
-    $('#gal').append("<div class='responsive'><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='red(\""+radf.video_id+"\")'></video></div>");
+    $('#gal').append("<div class='responsive'><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='red(\""+radf.video_id+"\",\""+radf.author.unique_id+"\")'></video></div>");
   }
 }
 async function rsd(u){
   let rad = await fetch('https://www.tikwm.com/api/feed/search?keywords='+u+'&count=8');
   let radj = await rad.json();
   for(const radf of radj.data.videos){
-    $('#gal').append("<div class='responsive'><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='red(\""+radf.video_id+"\")'></video></div>");
+    $('#gal').append("<div class='responsive'><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='red(\""+radf.video_id+"\",\""+radf.author.unique_id+"\")'></video></div>");
   }
 }
 async function red(s,u){
