@@ -127,6 +127,8 @@ async function red(s,u){
       $('#link').prepend("<a href='"+el.url+"' note='"+el.format_note+"' download='"+im.uploader+"-"+im.id+"'>"+el.resolution+"-"+hf(el.filesize)+"<br/>("+el.vcodec+")</a>");
       $('#res').fadeOut();$('#ult').fadeIn();
     })
+    let ttl=im.fulltitle??"No Title";
+    $('#pp').html("<div class='clearfix'/><h1>"+ttl+"</h1><h4><a href='?q=user:"+im.uploader+"'>@"+im.uploader+"</a> at "+uts(im.timestamp)+" | 👁 "+im.view_count.toLocaleString()+" ⭐ "+im.bodydance_score+"</h4>");
     $('#pr').html("<video preload='metadata' id='video' loop muted controls src='"+im.format[im.format.length-1].url+"' onerror='gg(this.videoHeight,im.format.length-1)' onloadedmetadata='gg(this.videoHeight,im.format.length-1)'></video>");
   });
   rud(u);
@@ -147,6 +149,8 @@ $(document).ready(function(){
     let idv=query.q.match(/https:\/\/www.tiktok.com\/(.*)\/video\/(\d+)/);
     if(idv!==null && idv[2]!==null){
       red(idv[2],idv[1]);
+    }else if(query.q.includes('user:')){
+      rud(query.q.replace('user:',''));
     }else{
       rsd(query.q);
     }

@@ -27,12 +27,13 @@
 <title>Tiktok Video Downloader - Network Reverse</title>
 <style>
 body{background-color:#000;background-attachment:fixed;height:900px;color:#123;font: small calibri;background-image:radial-gradient(at 0 35%, #000 72%, #f80 74%,#fff 75%,#000 79%);}
+a{text-decoration:none;color:#f80}
 #cont{
 /*     text-align:center; */
     width:98vw;
     min-height:100vh
 }
-header{position:sticky;top:0;z-index:99;text-align:center}
+header{position:sticky;top:0;z-index:99;text-align:center;scale:140%}
 #video{margin:0 auto}
 #link{
     display: flex;
@@ -50,10 +51,16 @@ header{position:sticky;top:0;z-index:99;text-align:center}
     color: aliceblue;
 }
 #pr{height:60vh;display:flex;flex:auto;width:100vw}
+#pp{
+    width: 100vw;
+    color: #f80;
+    line-height: 2px;
+    margin: 10px;
+}
 #pr video{height:60vh;margin:5px;flex:auto;max-width:98vw}
 #ult{display:none}
 #gal{display:flex;flex-flow: wrap}
-.responsive {width:20vw;margin:5px auto;position:relative;border: 1px solid #f80;}
+.responsive {width:20vw;margin:5px auto;position:relative;border: 1px solid #f80;cursor:pointer}
 .responsive video{width:100%}
 .clearfix:after {
   content: "";
@@ -86,9 +93,9 @@ header{position:sticky;top:0;z-index:99;text-align:center}
 </head>
 <body>
 <div id='cont'>
-<header><input id='vid' type='text' style='width:80vw;scale:120%' placeholder='Tiktok video url or search keyword...'></input></header>
+<header><a href='/'>🏡 </a><input id='vid' type='text' style='width:50vw;margin:10px' placeholder='Tiktok video url or search keyword...'></input></header>
 <div style="display:none;opacity:0.8;z-index:98;width:100%;height:99vh;position:fixed;top:0;left:0;padding-top:10px;text-align:center;background-image:radial-gradient(at 0 35%, #000 72%, #f80 74%,#fff 75%,#000 79%);" id='res'><img src='loading.gif' style='margin-top:20vh;z-index:9' class='but'/></div>
-<div id='ult'><div id='pr'></div>
+<div id='ult'><div id='pr'></div><div id='pp'></div>
 <div id='link'></div></div>
 <div id='gal'></div>
 </div>
