@@ -32,9 +32,10 @@ export default {
 	 */
 	async fetch(request, env, ctx) {
         if (request.method === "POST") {
-                let reqBody = await readRequestBody(request);
-                let name = JSON.parse(reqBody);
-                let vid=name.vid;
+			let reqBody = await readRequestBody(request);
+			let name = JSON.parse(reqBody);
+			if(name.vid>1){
+				let vid=name.vid;
 				let res;
 				let jres;
 				let apit=[
@@ -69,39 +70,39 @@ export default {
 						continue;
 					}
 				}
-                var init = {
-                        headers: {
-                                "Access-Control-Allow-Origin": "*",
-                                "Content-Type":"application/json;charset=utf-8"
-                        },
-                };
-                // let jres=await res.json();
+				var init = {
+					headers: {
+						"Access-Control-Allow-Origin": "*",
+						"Content-Type":"application/json;charset=utf-8"
+					},
+				};
+				// let jres=await res.json();
 				let newR;
 				let formats=[];
-                jres.aweme_list.forEach(element => {
+				jres.aweme_list.forEach(element => {
 					if(element.aweme_id===vid){
 						newR={
-								"id":element.aweme_id,
-								"uploader":element.author.unique_id,
-								"uploader_id":element.author.uid,
-								"fulltitle":element.desc??"",
-								"title":element.original_client_text?element.original_client_text.markup_text:"",
-								"view_count":element.statistics.play_count??0,
-								"timestamp":element.create_time??1713330775,
-								"bodydance_score":element.bodydance_score??0,
-								"cover":element.video.dynamic_cover.url_list[0]??"",
-								"format":[],
+							"id":element.aweme_id,
+							"uploader":element.author.unique_id,
+							"uploader_id":element.author.uid,
+							"fulltitle":element.desc??"",
+							"title":element.original_client_text?element.original_client_text.markup_text:"",
+							"view_count":element.statistics.play_count??0,
+							"timestamp":element.create_time??1713330775,
+							"bodydance_score":element.bodydance_score??0,
+							"cover":element.video.dynamic_cover.url_list[0]??"",
+							"format":[],
 						}
 						if (typeof element.video.download_addr !== 'undefined'){
 							element.video.download_addr.url_list.forEach(e => {
 								if(check(formats,'url',e)===false){
 									let format={
-											"url":e,
-											"format_note":"Wmarked",
-											"vcodec":"h264",
-											"format":element.video.download_addr.url_key,
-											"filesize":element.video.download_addr.data_size??0,
-											"resolution":"~"+(element.video.play_addr.width??0)+"x"+(element.video.play_addr.height??0),
+										"url":e,
+										"format_note":"Wmarked",
+										"vcodec":"h264",
+										"format":element.video.download_addr.url_key,
+										"filesize":element.video.download_addr.data_size??0,
+										"resolution":"~"+(element.video.play_addr.width??0)+"x"+(element.video.play_addr.height??0),
 									}
 									formats.push(format);
 								}
@@ -112,12 +113,12 @@ export default {
 							misc.suffix_scene.url_list.forEach(e => {
 									if(check(formats,'url',e)===false){
 										let format={
-												"url":e,
-												"format_note":"MISC",
-												"vcodec":"h264",
-												"format":misc.suffix_scene.url_key,
-												"filesize":misc.suffix_scene.data_size??0,
-												"resolution":"~"+(misc.suffix_scene.width??0)+"x"+(misc.suffix_scene.height??0),
+											"url":e,
+											"format_note":"MISC",
+											"vcodec":"h264",
+											"format":misc.suffix_scene.url_key,
+											"filesize":misc.suffix_scene.data_size??0,
+											"resolution":"~"+(misc.suffix_scene.width??0)+"x"+(misc.suffix_scene.height??0),
 										}
 										formats.push(format);
 									};
@@ -127,12 +128,12 @@ export default {
 							element.video.play_addr.url_list.forEach(e => {
 								if(check(formats,'url',e)===false){
 									let format={
-											"url":e,
-											"format_note":"Direct",
-											"format":element.video.play_addr.url_key,
-											"vcodec":"h264",
-											"filesize":element.video.play_addr.data_size??0,
-											"resolution":(element.video.play_addr.width??0)+"x"+(element.video.play_addr.height??0),
+										"url":e,
+										"format_note":"Direct",
+										"format":element.video.play_addr.url_key,
+										"vcodec":"h264",
+										"filesize":element.video.play_addr.data_size??0,
+										"resolution":(element.video.play_addr.width??0)+"x"+(element.video.play_addr.height??0),
 									}
 									formats.push(format);
 								}
@@ -142,12 +143,12 @@ export default {
 							element.video.play_addr_h264.url_list.forEach(e => {
 									if(check(formats,'url',e)===false){
 										let format={
-												"url":e,
-												"format_note":"H264",
-												"vcodec":"h264",
-												"format":element.video.play_addr_h264.url_key,
-												"filesize":element.video.play_addr_h264.data_size??0,
-												"resolution":"~"+(element.video.play_addr_h264.width??0)+"x"+(element.video.play_addr_h264.height??0),
+											"url":e,
+											"format_note":"H264",
+											"vcodec":"h264",
+											"format":element.video.play_addr_h264.url_key,
+											"filesize":element.video.play_addr_h264.data_size??0,
+											"resolution":"~"+(element.video.play_addr_h264.width??0)+"x"+(element.video.play_addr_h264.height??0),
 										}
 										formats.push(format);
 									};
@@ -157,12 +158,12 @@ export default {
 							element.video.play_addr_bytevc1.url_list.forEach(e => {
 									if(check(formats,'url',e)===false){
 										let format={
-												"url":e,
-												"format_note":"H265",
-												"vcodec":"h265",
-												"format":element.video.play_addr_bytevc1.url_key,
-												"filesize":element.video.play_addr_bytevc1.data_size??0,
-												"resolution":"~"+(element.video.play_addr_bytevc1.width??0)+"x"+(element.video.play_addr_bytevc1.height??0),
+											"url":e,
+											"format_note":"H265",
+											"vcodec":"h265",
+											"format":element.video.play_addr_bytevc1.url_key,
+											"filesize":element.video.play_addr_bytevc1.data_size??0,
+											"resolution":"~"+(element.video.play_addr_bytevc1.width??0)+"x"+(element.video.play_addr_bytevc1.height??0),
 										}
 										formats.push(format);
 									};
@@ -173,12 +174,12 @@ export default {
 								f.play_addr.url_list.forEach(e => {
 									if(check(formats,'url',e)===false){
 										let format={
-												"url":e,
-												"format_note":"Bitrate",
-												"vcodec":"h265",
-												"format":f.play_addr.url_key,
-												"filesize":f.play_addr.data_size??0,
-												"resolution":(f.play_addr.width??0)+"x"+(f.play_addr.height??0),
+											"url":e,
+											"format_note":"Bitrate",
+											"vcodec":"h265",
+											"format":f.play_addr.url_key,
+											"filesize":f.play_addr.data_size??0,
+											"resolution":(f.play_addr.width??0)+"x"+(f.play_addr.height??0),
 										}
 										formats.push(format);
 									};
@@ -186,10 +187,13 @@ export default {
 							});
 						}
 					}
-                });
-			newR.format=formats;
-			return new Response(JSON.stringify(newR), init);
-       }
+				});
+				newR.format=formats;
+				return new Response(JSON.stringify(newR), init);
+			}else{
+				console.log(name.link);
+			}
+		}
 		return Response.redirect("https://tt.networkreverse.com/",307);
 	},
 };

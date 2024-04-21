@@ -39,6 +39,24 @@ function getJsonFromUrl(query) {
   });
   return result;
 }
+async function Download(url, filename) {
+    if (!url) {
+      throw new Error("Resource URL not provided! You need to provide one");
+    }
+    fetch(url)
+      .then(response => response.blob())
+      .then(blob => {
+        const blobURL = URL.createObjectURL(blob);console.log(blobURL);
+        const a = document.createElement("a");
+        a.href = blobURL;
+        a.style = "display: none";
+
+        if (name && name.length) a.download = name;
+        document.body.appendChild(a);
+        a.click();
+      })
+      .catch(() => setError(true));
+}
 function hfz(size) {
     var i = (size == 0 || size == null) ? 0 : Math.floor(Math.log(size) / Math.log(1024));
     return (size / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
@@ -120,7 +138,7 @@ async function red(s,u){
     im=data;
   }).done(function(){
     im.format.forEach(el=>{
-      $('#link').prepend("<a href='"+el.url+"' note='"+el.format_note+"' download='"+im.uploader+"-"+im.id+"'>"+el.resolution+"-"+hf(el.filesize)+"<br/>("+el.vcodec+")</a>");
+      $('#link').prepend("<span note='"+el.format_note+"' download='"+im.uploader+"-"+im.id+"' onclick='event.preventDefault();Download(\""+el.url+"\",\"asd.mp4\")'>"+el.resolution+"-"+hf(el.filesize)+"<br/>("+el.vcodec+")</span>");
       $('#res').fadeOut();$('#ult').fadeIn();
     })
     $('#pr').html("<video preload='metadata' id='video' loop muted controls src='"+im.format[im.format.length-1].url+"' onerror='gg(this.videoHeight,im.format.length-1)' onloadedmetadata='gg(this.videoHeight,im.format.length-1)'></video>");

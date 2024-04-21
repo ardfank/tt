@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 <meta content="utf-8" http-equiv="encoding">
 <meta content="tiktok downloader,download tiktok without watermark,download video tiktok, download tiktok, free tiktok downloader" name="keywords" />
@@ -37,7 +38,7 @@ body{background-color:#000;background-attachment:fixed;height:900px;color:#123;f
     flex-flow: wrap;
     text-align: center;
     }
-#link a {
+#link span {
     background: chocolate;
     text-decoration: none;
     margin: 5px;
@@ -51,8 +52,8 @@ body{background-color:#000;background-attachment:fixed;height:900px;color:#123;f
 #pr video{height:60vh;margin:5px;flex:auto;max-width:98vw}
 #ult{display:none}
 #gal{display:flex;flex-flow: wrap}
-.responsive {margin:5px auto;position:relative;border: 1px solid #f80;}
-.responsive video{width:20vw}
+.responsive {width:20vw;margin:5px auto;position:relative;border: 1px solid #f80;}
+.responsive video{width:100%}
 .clearfix:after {
   content: "";
   display: table;
@@ -65,6 +66,18 @@ body{background-color:#000;background-attachment:fixed;height:900px;color:#123;f
     bottom: 5px;
     z-index: 888;
     background: rgba(255,140,0,.8);
+}
+@media only screen and (max-width: 900px) {
+  .responsive {
+	width: 47vw;
+/* 	height: 47vw; */
+  }
+}
+@media only screen and (max-width: 700px) {
+  .responsive {
+	width: 94vw;
+/* 	height: 94vw; */
+  }
 }
 ::-webkit-scrollbar{width:5px;height:5px;}::-webkit-scrollbar-track{background:gainsboro;border-radius:5px;}::-webkit-scrollbar-thumb{background:rgba(255,0,0,.5);border-radius:5px;}::-webkit-scrollbar-thumb:hover{background:#830;}
 </style>
