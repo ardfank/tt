@@ -39,24 +39,6 @@ function getJsonFromUrl(query) {
   });
   return result;
 }
-async function Download(url, filename) {
-    if (!url) {
-      throw new Error("Resource URL not provided! You need to provide one");
-    }
-    fetch(url)
-      .then(response => response.blob())
-      .then(blob => {
-        const blobURL = URL.createObjectURL(blob);console.log(blobURL);
-        const a = document.createElement("a");
-        a.href = blobURL;
-        a.style = "display: none";
-
-        if (name && name.length) a.download = name;
-        document.body.appendChild(a);
-        a.click();
-      })
-      .catch(() => setError(true));
-}
 function hfz(size) {
     var i = (size == 0 || size == null) ? 0 : Math.floor(Math.log(size) / Math.log(1024));
     return (size / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
@@ -70,6 +52,7 @@ function gg(s,t){
   }
 }
 async function rad(){
+  $('#res').fadeIn();
   let rd = await fetch('https://www.tikwm.com/api/feed/list?region='+region.replace('en','id')+'&count=15');
   let radj = await rd.json();
   if(radj.data!==undefined){
@@ -78,6 +61,7 @@ async function rad(){
       let atl=(radf.size>0)?"🎡 "+hfz(radf.size)+" - 👁 "+radf.play_count.toLocaleString():"👁 "+radf.play_count.toLocaleString();
       var ct=uts(radf.create_time);
       $('#gal').append("<div class='responsive' title='@"+radf.author.unique_id+"\n"+dur+"\" ("+atl+")\n"+ct+"' alt='"+dur+"\" ("+atl+") "+ct+"'><span class='cp'>@"+radf.author.unique_id+"<br/>"+ct+"<br/>"+dur+"\" ("+atl+")</span><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='location.assign(\"?q=https://www.tiktok.com/@"+radf.author.unique_id+"/video/"+radf.video_id+"\")'></video></div>");
+      $('#res').fadeOut();
     }
     $(window).on('resize scroll',function(){los(5,function(){
       if(radj.data.hasMore===false){
@@ -111,6 +95,7 @@ async function rud(u,c){
   }
 }
 async function rsd(u,c){
+  $('#res').fadeIn();
   c=c??0;
   let dr = await fetch('https://www.tikwm.com/api/feed/search?keywords='+u+'&count=15&cursor='+c);
   let radj = await dr.json();
@@ -120,6 +105,7 @@ async function rsd(u,c){
       let atl=(radf.size>0)?"🎡 "+hfz(radf.size)+" - 👁 "+radf.play_count.toLocaleString():"👁 "+radf.play_count.toLocaleString();
       var ct=uts(radf.create_time);
       $('#gal').append("<div class='responsive' title='@"+radf.author.unique_id+"\n"+dur+"\" ("+atl+")\n"+ct+"' alt='"+dur+"\" ("+atl+") "+ct+"'><span class='cp'>@"+radf.author.unique_id+"<br/>"+ct+"<br/>"+dur+"\" ("+atl+")</span><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='location.assign(\"?q=https://www.tiktok.com/@"+radf.author.unique_id+"/video/"+radf.video_id+"\")'></video></div>");
+      $('#res').fadeOut();
     }
     $(window).on('resize scroll',function(){los(5,function(){
       if(radj.data.hasMore===false){
@@ -133,12 +119,12 @@ async function rsd(u,c){
 }
 async function red(s,u){
   $('#gal').html("");
-  $('#res').fadeIn();$('#ult').fadeOut(); $('#link').html("");
+  $('#res').fadeIn();$('#ult').fadeOut();$('#link').html("");
   $.post('https://tt.networkreverse.com/tapi', {vid:s},function(data) {
     im=data;
   }).done(function(){
     im.format.forEach(el=>{
-      $('#link').prepend("<span note='"+el.format_note+"' download='"+im.uploader+"-"+im.id+"' onclick='event.preventDefault();Download(\""+el.url+"\",\"asd.mp4\")'>"+el.resolution+"-"+hf(el.filesize)+"<br/>("+el.vcodec+")</span>");
+      $('#link').prepend("<a href='"+el.url+"' note='"+el.format_note+"' download='"+im.uploader+"-"+im.id+"'>"+el.resolution+"-"+hf(el.filesize)+"<br/>("+el.vcodec+")</a>");
       $('#res').fadeOut();$('#ult').fadeIn();
     })
     $('#pr').html("<video preload='metadata' id='video' loop muted controls src='"+im.format[im.format.length-1].url+"' onerror='gg(this.videoHeight,im.format.length-1)' onloadedmetadata='gg(this.videoHeight,im.format.length-1)'></video>");
@@ -159,7 +145,6 @@ $(document).ready(function(){
     rad();
   }else{
     let idv=query.q.match(/https:\/\/www.tiktok.com\/(.*)\/video\/(\d+)/);
-    // console.log();
     if(idv!==null && idv[2]!==null){
       red(idv[2],idv[1]);
     }else{
@@ -171,4 +156,16 @@ $(document).ready(function(){
     let vid=$(this).val();
     location.href='?q='+vid;
   });
+  document.onkeydown = function(e) {
+    if(e.target.nodeName !== 'INPUT' && e.target.nodeName !== 'TEXTAREA') {
+      switch (e.keyCode) {
+          case 190:
+              $("html,body").animate({ scrollTop: 0 },"slow");
+              break;
+          case 188:
+              $('html,body').animate({scrollTop: document.body.scrollHeight},"slow");
+              break;
+      }
+    }
+  }
 });
