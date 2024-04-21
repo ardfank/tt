@@ -26,7 +26,11 @@
 <title>Tiktok Video Downloader - Network Reverse</title>
 <style>
 body{background-color:#000;background-attachment:fixed;height:900px;color:#123;font: medium calibri;background-image:radial-gradient(at 0 35%, #000 72%, #f80 74%,#fff 75%,#000 79%);}
-#cont{text-align:center;width:98vw}
+#cont{
+    text-align:center;
+    width:98vw;
+    min-height:100vh
+}
 #video{margin:0 auto}
 #link{
     display: flex;
@@ -48,7 +52,12 @@ body{background-color:#000;background-attachment:fixed;height:900px;color:#123;f
 #ult{display:none}
 #gal{display:flex;flex-flow: wrap;}
 .responsive {margin:5px auto}
-.responsive video{width:20vw;}
+.responsive video{width:20vw;border: 1px solid #f80;}
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 ::-webkit-scrollbar{width:5px;height:5px;}::-webkit-scrollbar-track{background:gainsboro;border-radius:5px;}::-webkit-scrollbar-thumb{background:rgba(255,0,0,.5);border-radius:5px;}::-webkit-scrollbar-thumb:hover{background:#830;}
 </style>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -61,6 +70,8 @@ body{background-color:#000;background-attachment:fixed;height:900px;color:#123;f
 <div id='link'></div></div>
 <div id='gal'></div>
 </div>
+<div class='clearfix'></div>
+<footer style='text-align:center;position:relative;top:10px'><img src='loading.gif'/></footer>
 <script type="text/javascript" src="./ss.js"></script>
 </body>
 </html>

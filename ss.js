@@ -1,6 +1,12 @@
 var im;
 let region=navigator.languages[2]??navigator.languages[1]??'id';
-
+function los(os,f){
+	var rect = document.getElementsByTagName("footer")[0].getBoundingClientRect();
+    // console.log(os,rect.top,window.innerHeight,rect.bottom);
+	if(rect.top-os < window.innerHeight && rect.bottom >= 0){
+		f();
+	}
+}
 function getSearchOrHashBased(url) {
   if(!url) url = location.href;
   var question = url.indexOf("?");
@@ -40,27 +46,39 @@ function gg(s,t){
   }
 }
 async function rad(){
-  let rad = await fetch('https://www.tikwm.com/api/feed/list?region='+region.replace('en','id')+'&count=4');
-  let radj = await rad.json();
-  for(const radf of radj.data){
-    $('#gal').append("<div class='responsive'><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='red(\""+radf.video_id+"\",\""+radf.author.unique_id+"\")'></video></div>");
+  let rd = await fetch('https://www.tikwm.com/api/feed/list?region='+region.replace('en','id')+'&count=15');
+  let radj = await rd.json();
+  if(radj.data!==undefined){
+    for(const radf of radj.data){
+      $('#gal').append("<div class='responsive'><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='location.assign(\"?q=https://www.tiktok.com/@"+radf.author.unique_id+"/video/"+radf.video_id+"\")'></video></div>");
+    }
+    $(window).on('resize scroll',function(){los(5,function(){rad();$(window).off('resize scroll');});});
   }
 }
-async function rud(u){
-  let rad = await fetch('https://www.tikwm.com/api/user/posts?unique_id='+u+'&count=8');
-  let radj = await rad.json();
-  for(const radf of radj.data.videos){
-    $('#gal').append("<div class='responsive'><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='red(\""+radf.video_id+"\",\""+radf.author.unique_id+"\")'></video></div>");
+async function rud(u,c){
+  c=c??0;
+  let rd = await fetch('https://www.tikwm.com/api/user/posts?unique_id='+u+'&count=15&cursor='+c);
+  let radj = await rd.json();
+  if(radj.data!==undefined){
+    for(const radf of radj.data.videos){
+      $('#gal').append("<div class='responsive'><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='location.assign(\"?q=https://www.tiktok.com/@"+radf.author.unique_id+"/video/"+radf.video_id+"\")'></video></div>");
+    }
+    $(window).on('resize scroll',function(){los(5,function(){rud(u,radj.data.cursor);$(window).off('resize scroll');});});
   }
 }
-async function rsd(u){
-  let rad = await fetch('https://www.tikwm.com/api/feed/search?keywords='+u+'&count=8');
-  let radj = await rad.json();
-  for(const radf of radj.data.videos){
-    $('#gal').append("<div class='responsive'><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='red(\""+radf.video_id+"\",\""+radf.author.unique_id+"\")'></video></div>");
+async function rsd(u,c){
+  c=c??0;
+  let dr = await fetch('https://www.tikwm.com/api/feed/search?keywords='+u+'&count=15&cursor='+c);
+  let radj = await dr.json();
+  if(radj.data!==undefined){
+    for(const radf of radj.data.videos){
+      $('#gal').append("<div class='responsive'><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='location.assign(\"?q=https://www.tiktok.com/@"+radf.author.unique_id+"/video/"+radf.video_id+"\")'></video></div>");
+    }
+    $(window).on('resize scroll',function(){los(5,function(){rsd(u,radj.data.cursor);$(window).off('resize scroll');});});
   }
 }
 async function red(s,u){
+  $('#gal').html("");
   $('#res').fadeIn();$('#ult').fadeOut(); $('#link').html("");
   $.post('https://tt.networkreverse.com/tapi', {vid:s},function(data) {
     im=data;
