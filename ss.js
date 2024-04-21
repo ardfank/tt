@@ -39,7 +39,13 @@ function getJsonFromUrl(query) {
   });
   return result;
 }
-
+function hfz(size) {
+    var i = (size == 0 || size == null) ? 0 : Math.floor(Math.log(size) / Math.log(1024));
+    return (size / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
+}
+function uts(ts){
+    return new Date(ts*1000).toLocaleString('id-ID');
+}
 function gg(s,t){
   if(s<1){
     $('#pr').html("<video preload='metadata' id='video' loop muted controls src='"+im.format[t-1].url+"' onerror='gg(this.videoHeight,"+(t-1)+")' onloadedmetadata='gg(this.videoHeight,"+(t-1)+")'></video>");
@@ -50,7 +56,10 @@ async function rad(){
   let radj = await rd.json();
   if(radj.data!==undefined){
     for(const radf of radj.data){
-      $('#gal').append("<div class='responsive'><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='location.assign(\"?q=https://www.tiktok.com/@"+radf.author.unique_id+"/video/"+radf.video_id+"\")'></video></div>");
+      let dur=(radf.duration>0)?radf.duration:0;
+      let atl=(radf.size>0)?"🎡 "+hfz(radf.size)+" - 👁 "+radf.play_count.toLocaleString():"👁 "+radf.play_count.toLocaleString();
+      var ct=uts(radf.create_time);
+      $('#gal').append("<div class='responsive' title='@"+radf.author.unique_id+"\n"+dur+"\" ("+atl+")\n"+ct+"' alt='"+dur+"\" ("+atl+") "+ct+"'><span class='cp'>@"+radf.author.unique_id+"<br/>"+ct+"<br/>"+dur+"\" ("+atl+")</span><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='location.assign(\"?q=https://www.tiktok.com/@"+radf.author.unique_id+"/video/"+radf.video_id+"\")'></video></div>");
     }
     $(window).on('resize scroll',function(){los(5,function(){rad();$(window).off('resize scroll');});});
   }
@@ -61,7 +70,10 @@ async function rud(u,c){
   let radj = await rd.json();
   if(radj.data!==undefined){
     for(const radf of radj.data.videos){
-      $('#gal').append("<div class='responsive'><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='location.assign(\"?q=https://www.tiktok.com/@"+radf.author.unique_id+"/video/"+radf.video_id+"\")'></video></div>");
+      let dur=(radf.duration>0)?radf.duration:0;
+      let atl=(radf.size>0)?"🎡 "+hfz(radf.size)+" - 👁 "+radf.play_count.toLocaleString():"👁 "+radf.play_count.toLocaleString();
+      var ct=uts(radf.create_time);
+      $('#gal').append("<div class='responsive' title='@"+radf.author.unique_id+"\n"+dur+"\" ("+atl+")\n"+ct+"' alt='"+dur+"\" ("+atl+") "+ct+"'><span class='cp'>@"+radf.author.unique_id+"<br/>"+ct+"<br/>"+dur+"\" ("+atl+")</span><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='location.assign(\"?q=https://www.tiktok.com/@"+radf.author.unique_id+"/video/"+radf.video_id+"\")'></video></div>");
     }
     $(window).on('resize scroll',function(){los(5,function(){rud(u,radj.data.cursor);$(window).off('resize scroll');});});
   }
@@ -72,7 +84,10 @@ async function rsd(u,c){
   let radj = await dr.json();
   if(radj.data!==undefined){
     for(const radf of radj.data.videos){
-      $('#gal').append("<div class='responsive'><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='location.assign(\"?q=https://www.tiktok.com/@"+radf.author.unique_id+"/video/"+radf.video_id+"\")'></video></div>");
+      let dur=(radf.duration>0)?radf.duration:0;
+      let atl=(radf.size>0)?"🎡 "+hfz(radf.size)+" - 👁 "+radf.play_count.toLocaleString():"👁 "+radf.play_count.toLocaleString();
+      var ct=uts(radf.create_time);
+      $('#gal').append("<div class='responsive' title='@"+radf.author.unique_id+"\n"+dur+"\" ("+atl+")\n"+ct+"' alt='"+dur+"\" ("+atl+") "+ct+"'><span class='cp'>@"+radf.author.unique_id+"<br/>"+ct+"<br/>"+dur+"\" ("+atl+")</span><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='location.assign(\"?q=https://www.tiktok.com/@"+radf.author.unique_id+"/video/"+radf.video_id+"\")'></video></div>");
     }
     $(window).on('resize scroll',function(){los(5,function(){rsd(u,radj.data.cursor);$(window).off('resize scroll');});});
   }
