@@ -61,7 +61,14 @@ async function rad(){
       var ct=uts(radf.create_time);
       $('#gal').append("<div class='responsive' title='@"+radf.author.unique_id+"\n"+dur+"\" ("+atl+")\n"+ct+"' alt='"+dur+"\" ("+atl+") "+ct+"'><span class='cp'>@"+radf.author.unique_id+"<br/>"+ct+"<br/>"+dur+"\" ("+atl+")</span><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='location.assign(\"?q=https://www.tiktok.com/@"+radf.author.unique_id+"/video/"+radf.video_id+"\")'></video></div>");
     }
-    $(window).on('resize scroll',function(){los(5,function(){rad();$(window).off('resize scroll');});});
+    $(window).on('resize scroll',function(){los(5,function(){
+      if(radj.data.hasMore===false){
+        $('footer img').attr('src','loading2.gif');
+      }else{
+        rad();
+      }
+      $(window).off('resize scroll');
+    });});
   }
 }
 async function rud(u,c){
@@ -75,7 +82,14 @@ async function rud(u,c){
       var ct=uts(radf.create_time);
       $('#gal').append("<div class='responsive' title='@"+radf.author.unique_id+"\n"+dur+"\" ("+atl+")\n"+ct+"' alt='"+dur+"\" ("+atl+") "+ct+"'><span class='cp'>@"+radf.author.unique_id+"<br/>"+ct+"<br/>"+dur+"\" ("+atl+")</span><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='location.assign(\"?q=https://www.tiktok.com/@"+radf.author.unique_id+"/video/"+radf.video_id+"\")'></video></div>");
     }
-    $(window).on('resize scroll',function(){los(5,function(){rud(u,radj.data.cursor);$(window).off('resize scroll');});});
+    $(window).on('resize scroll',function(){los(5,function(){
+      if(radj.data.hasMore===false){
+        $('footer img').attr('src','loading2.gif');
+      }else{
+        rud(u,radj.data.cursor);
+      }
+      $(window).off('resize scroll');
+    });});
   }
 }
 async function rsd(u,c){
@@ -89,7 +103,14 @@ async function rsd(u,c){
       var ct=uts(radf.create_time);
       $('#gal').append("<div class='responsive' title='@"+radf.author.unique_id+"\n"+dur+"\" ("+atl+")\n"+ct+"' alt='"+dur+"\" ("+atl+") "+ct+"'><span class='cp'>@"+radf.author.unique_id+"<br/>"+ct+"<br/>"+dur+"\" ("+atl+")</span><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='location.assign(\"?q=https://www.tiktok.com/@"+radf.author.unique_id+"/video/"+radf.video_id+"\")'></video></div>");
     }
-    $(window).on('resize scroll',function(){los(5,function(){rsd(u,radj.data.cursor);$(window).off('resize scroll');});});
+    $(window).on('resize scroll',function(){los(5,function(){
+      if(radj.data.hasMore===false){
+        $('footer img').attr('src','loading2.gif');
+      }else{
+        rsd(u,radj.data.cursor);
+      }
+      $(window).off('resize scroll');
+    });});
   }
 }
 async function red(s,u){
