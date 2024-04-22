@@ -1,5 +1,13 @@
 var im;
 let region=navigator.languages[2]??navigator.languages[1]??'id';
+function cp(){
+    $(".responsive").mouseenter(function(){
+      $(this).children('.cp').fadeIn();
+    });
+    $(".responsive").mouseleave(function(){
+      $(this).children('.cp').slideUp();
+    });
+}
 function los(os,f){
 	var rect = document.getElementsByTagName("footer")[0].getBoundingClientRect();
     // console.log(os,rect.top,window.innerHeight,rect.bottom);
@@ -52,7 +60,7 @@ function gg(s,t){
   }
 }
 async function rad(){
-  $('#res').fadeIn();
+  // $('#res').fadeIn();
   let rd = await fetch('https://www.tikwm.com/api/feed/list?region='+region.replace('en','id')+'&count=15');
   let radj = await rd.json();
   if(radj.data!==undefined){
@@ -60,7 +68,7 @@ async function rad(){
       let dur=(radf.duration>0)?radf.duration:0;
       let atl=(radf.size>0)?"🎡 "+hfz(radf.size)+" - 👁 "+radf.play_count.toLocaleString():"👁 "+radf.play_count.toLocaleString();
       var ct=uts(radf.create_time);
-      $('#gal').append("<div class='responsive' title='@"+radf.author.unique_id+"\n"+dur+"\" ("+atl+")\n"+ct+"' alt='"+dur+"\" ("+atl+") "+ct+"'><span class='cp'>@"+radf.author.unique_id+"<br/>"+ct+"<br/>"+dur+"\" ("+atl+")</span><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='location.assign(\"?q=https://www.tiktok.com/@"+radf.author.unique_id+"/video/"+radf.video_id+"\")'></video></div>");
+      $('#gal').append("<div class='responsive' title='@"+radf.author.unique_id+"\n"+dur+"\" ("+atl+")\n"+ct+"' alt='"+dur+"\" ("+atl+") "+ct+"' onclick='location.assign(\"?q=https://www.tiktok.com/@"+radf.author.unique_id+"/video/"+radf.video_id+"\")'><span class='cp'>@"+radf.author.unique_id+"<br/>"+ct+"<br/>"+dur+"\" ("+atl+")</span><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"'></video></div>");
       $('#res').fadeOut();
     }
     $(window).on('resize scroll',function(){los(5,function(){
@@ -72,6 +80,7 @@ async function rad(){
       $(window).off('resize scroll');
     });});
   }
+  cp();
 }
 async function rud(u,c){
   c=c??0;
@@ -82,7 +91,7 @@ async function rud(u,c){
       let dur=(radf.duration>0)?radf.duration:0;
       let atl=(radf.size>0)?"🎡 "+hfz(radf.size)+" - 👁 "+radf.play_count.toLocaleString():"👁 "+radf.play_count.toLocaleString();
       var ct=uts(radf.create_time);
-      $('#gal').append("<div class='responsive' title='@"+radf.author.unique_id+"\n"+dur+"\" ("+atl+")\n"+ct+"' alt='"+dur+"\" ("+atl+") "+ct+"'><span class='cp'>@"+radf.author.unique_id+"<br/>"+ct+"<br/>"+dur+"\" ("+atl+")</span><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='location.assign(\"?q=https://www.tiktok.com/@"+radf.author.unique_id+"/video/"+radf.video_id+"\")'></video></div>");
+      $('#gal').append("<div class='responsive' title='@"+radf.author.unique_id+"\n"+dur+"\" ("+atl+")\n"+ct+"' alt='"+dur+"\" ("+atl+") "+ct+"' onclick='location.assign(\"?q=https://www.tiktok.com/@"+radf.author.unique_id+"/video/"+radf.video_id+"\")'><span class='cp'>@"+radf.author.unique_id+"<br/>"+ct+"<br/>"+dur+"\" ("+atl+")</span><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"'></video></div>");
     }
     $(window).on('resize scroll',function(){los(5,function(){
       if(radj.data.hasMore===false){
@@ -93,9 +102,10 @@ async function rud(u,c){
       $(window).off('resize scroll');
     });});
   }
+  cp();
 }
 async function rsd(u,c){
-  $('#res').fadeIn();
+  // $('#res').fadeIn();
   c=c??0;
   let dr = await fetch('https://www.tikwm.com/api/feed/search?keywords='+u+'&count=15&cursor='+c);
   let radj = await dr.json();
@@ -104,7 +114,7 @@ async function rsd(u,c){
       let dur=(radf.duration>0)?radf.duration:0;
       let atl=(radf.size>0)?"🎡 "+hfz(radf.size)+" - 👁 "+radf.play_count.toLocaleString():"👁 "+radf.play_count.toLocaleString();
       var ct=uts(radf.create_time);
-      $('#gal').append("<div class='responsive' title='@"+radf.author.unique_id+"\n"+dur+"\" ("+atl+")\n"+ct+"' alt='"+dur+"\" ("+atl+") "+ct+"'><span class='cp'>@"+radf.author.unique_id+"<br/>"+ct+"<br/>"+dur+"\" ("+atl+")</span><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"' onclick='location.assign(\"?q=https://www.tiktok.com/@"+radf.author.unique_id+"/video/"+radf.video_id+"\")'></video></div>");
+      $('#gal').append("<div class='responsive' title='@"+radf.author.unique_id+"\n"+dur+"\" ("+atl+")\n"+ct+"' alt='"+dur+"\" ("+atl+") "+ct+"' onclick='location.assign(\"?q=https://www.tiktok.com/@"+radf.author.unique_id+"/video/"+radf.video_id+"\")'><span class='cp'>@"+radf.author.unique_id+"<br/>"+ct+"<br/>"+dur+"\" ("+atl+")</span><video preload='none' poster='"+radf.origin_cover+"' src='"+radf.play+"' id='"+radf.video_id+"'></video></div>");
       $('#res').fadeOut();
     }
     $(window).on('resize scroll',function(){los(5,function(){
@@ -116,6 +126,7 @@ async function rsd(u,c){
       $(window).off('resize scroll');
     });});
   }
+  cp();
 }
 async function red(s,u){
   $('#gal').html("");
@@ -144,14 +155,18 @@ $(document).ready(function(){
   };
   // console.log(!query.q);
   if(!query.q){
+    $('#res').fadeIn();
     rad();
   }else{
     let idv=query.q.match(/https:\/\/www.tiktok.com\/(.*)\/video\/(\d+)/);
     if(idv!==null && idv[2]!==null){
+      $('#res').fadeIn();
       red(idv[2],idv[1]);
     }else if(query.q.includes('user:')){
+      $('#res').fadeIn();
       rud(query.q.replace('user:',''));
     }else{
+      $('#res').fadeIn();
       rsd(query.q);
     }
   }

@@ -28,10 +28,12 @@
 <style>
 body{background-color:#000;background-attachment:fixed;height:900px;color:#123;font: small calibri;background-image:radial-gradient(at 0 35%, #000 72%, #f80 74%,#fff 75%,#000 79%);}
 a{text-decoration:none;color:#f80}
+h4{border-top:1px dashed}
 #cont{
 /*     text-align:center; */
     width:98vw;
-    min-height:100vh
+    min-height:100vh;
+    overflow:hidden;
 }
 header{position:sticky;top:0;z-index:99;text-align:center;scale:140%}
 #video{margin:0 auto}
@@ -54,7 +56,6 @@ header{position:sticky;top:0;z-index:99;text-align:center;scale:140%}
 #pp{
     width: 100vw;
     color: #f80;
-    line-height: 2px;
     margin: 10px;
 }
 #pr video{height:60vh;margin:5px;flex:auto;max-width:98vw}
@@ -74,6 +75,7 @@ header{position:sticky;top:0;z-index:99;text-align:center;scale:140%}
     bottom: 5px;
     z-index: 88;
     background: rgba(255,140,0,.8);
+    display:none;
 }
 @media only screen and (max-width: 900px) {
   .responsive {
