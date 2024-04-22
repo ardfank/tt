@@ -193,7 +193,17 @@ var worker_default = {
         newR.format = formats;
         return new Response(JSON.stringify(newR), init);
       } else {
-        console.log(name.link);
+		  var init = {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "video/mp4"
+          }
+        };
+		let link=decodeURIComponent(name.link);
+		let bl=await fetch(link);
+		// let ble=await bl.blob();
+        // console.log(await bl);
+		return new Response(await bl, init);
       }
     }
     return Response.redirect("https://tt.networkreverse.com/", 307);

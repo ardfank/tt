@@ -15,6 +15,27 @@ function los(os,f){
 		f();
 	}
 }
+function changeVideoSource(blob,f) {
+  var blobUrl = URL.createObjectURL(blob);
+  console.log(`Changing video source to blob URL "${blobUrl}"`)
+  var a = document.createElement("a");
+  a.href = blobUrl;
+  a.setAttribute("download", f);
+  a.click();
+}
+
+function fetchVideo(url) {
+  return fetch(url).then(function(response) {
+    return response.blob();
+  });
+}
+
+function dl(s,f){
+  // event.preventDefault();
+  fetchVideo(s).then(function(blob) {
+    changeVideoSource(blob,f);
+  });
+}
 function getSearchOrHashBased(url) {
   if(!url) url = location.href;
   var question = url.indexOf("?");
@@ -141,7 +162,7 @@ async function red(s,u){
     im=data;
   }).done(function(){
     im.format.forEach(el=>{
-      $('#link').prepend("<a href='"+el.url+"' note='"+el.format_note+"' download='"+im.uploader+"-"+im.id+"'>"+el.resolution+"-"+hf(el.filesize)+"<br/>("+el.vcodec+")</a>");
+      $('#link').prepend("<a target='_blank' onclick='event.preventDefault();dl(\""+el.url+"\",\""+im.uploader+"-"+im.id+".mp4\")' href='"+el.url+"' note='"+el.format_note+"' download='"+im.uploader+"-"+im.id+"'>"+el.resolution+"-"+hf(el.filesize)+"<br/>("+el.vcodec+")</a>");
       $('#res').fadeOut();$('#ult').fadeIn();
     })
     let ttl=im.fulltitle??"No Title";
