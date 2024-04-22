@@ -80,6 +80,11 @@ async function rad(){
       $(window).off('resize scroll');
     });});
   }
+  let galb=document.getElementById('gal').getBoundingClientRect();
+  let contb=document.getElementById('cont').getBoundingClientRect();
+  if(contb.bottom>galb.bottom){
+    rad();
+  }
   cp();
 }
 async function rud(u,c){
