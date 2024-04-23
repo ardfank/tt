@@ -82,7 +82,7 @@ function gg(s,t){
 }
 async function rad(){
   // $('#res').fadeIn();
-  let rd = await fetch('https://www.tikwm.com/api/feed/list?region='+region.replace('en','id')+'&count=15');
+  let rd = await fetch('https://www.tikwm.com/api/feed/list?region='+region.replace('en','id')+'&count=4');
   let radj = await rd.json();
   if(radj.data!==undefined){
     for(const radf of radj.data){
