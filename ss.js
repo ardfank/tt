@@ -129,6 +129,11 @@ async function rud(u,c){
       $(window).off('resize scroll');
     });});
   }
+  let galb=document.getElementById('gal').getBoundingClientRect();
+  let contb=document.getElementById('cont').getBoundingClientRect();
+  if(contb.bottom>galb.bottom){
+    rud(u,radj.data.cursor);
+  }
   cp();
 }
 async function rsd(u,c){
@@ -152,6 +157,11 @@ async function rsd(u,c){
       }
       $(window).off('resize scroll');
     });});
+  }
+  let galb=document.getElementById('gal').getBoundingClientRect();
+  let contb=document.getElementById('cont').getBoundingClientRect();
+  if(contb.bottom>galb.bottom){
+    rsd(u,radj.data.cursor);
   }
   cp();
 }
