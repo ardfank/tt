@@ -166,7 +166,7 @@ async function red(s,u){
       $('#link').prepend("<a target='_blank' onclick='event.preventDefault();dl(\""+el.url+"\",\""+im.uploader+"-"+im.id+".mp4\")' href='"+el.url+"' note='"+el.format_note+"' download='"+im.uploader+"-"+im.id+"'>"+el.resolution+"-"+hf(el.filesize)+"<br/>("+el.vcodec+")</a>");
       $('#res').fadeOut();$('#ult').fadeIn();
     })
-    let ttl=(im.fulltitle===null)?im.fulltitle:"No Title";
+    let ttl=(im.fulltitle!==null)?im.fulltitle:"No Title";
     document.title=ttl+" - "+im.uploader+" - "+im.id+" - "+uts(im.timestamp)+" - User video search - Network Reverse";
     $('#pp').html("<div class='clearfix'/><h1>"+ttl+"</h1><h4><a href='?q=user:"+im.uploader+"'>@"+im.uploader+"</a> at "+uts(im.timestamp)+" | 👁 "+im.view_count.toLocaleString()+" ⭐ "+im.bodydance_score+"</h4>");
     $('#pr').html("<video preload='metadata' id='video' loop muted controls src='"+im.format[im.format.length-1].url+"' onerror='gg(this.videoHeight,im.format.length-1)' onloadedmetadata='gg(this.videoHeight,im.format.length-1)'></video>");
