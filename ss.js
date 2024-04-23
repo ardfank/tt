@@ -183,6 +183,8 @@ function hf(size) {
     return (size / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
 }
 $(document).ready(function(){
+  $('meta[property="og:url"]').attr('content', location.href);
+  $('link[rel="canonical"]').attr('href', location.href);
   let query=getSearchOrHashBased(location.href);
   if(query.length>1){
     query=getJsonFromUrl(query);
