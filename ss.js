@@ -1,4 +1,4 @@
-var im;
+var im;var mi=[];
 let region=navigator.languages[2]??navigator.languages[1]??'id';
 function cp(){
     $(".responsive").mouseenter(function(){
@@ -86,6 +86,7 @@ async function rad(){
   let radj = await rd.json();
   if(radj.data!==undefined){
     for(const radf of radj.data){
+      mi.push(radf.play);
       let dur=(radf.duration>0)?radf.duration:0;
       let atl=(radf.size>0)?"🎡 "+hfz(radf.size)+" - 👁 "+radf.play_count.toLocaleString():"👁 "+radf.play_count.toLocaleString();
       var ct=uts(radf.create_time);
@@ -110,10 +111,11 @@ async function rad(){
 }
 async function rud(u,c){
   c=c??0;
-  let rd = await fetch('https://www.tikwm.com/api/user/posts?unique_id='+u+'&count=15&cursor='+c);
+  let rd = await fetch('https://www.tikwm.com/api/user/posts?unique_id='+u+'&count=8&cursor='+c);
   let radj = await rd.json();
   if(radj.data!==undefined){
     for(const radf of radj.data.videos){
+      mi.push(radf.play);
       let dur=(radf.duration>0)?radf.duration:0;
       let atl=(radf.size>0)?"🎡 "+hfz(radf.size)+" - 👁 "+radf.play_count.toLocaleString():"👁 "+radf.play_count.toLocaleString();
       var ct=uts(radf.create_time);
@@ -143,6 +145,7 @@ async function rsd(u,c){
   let radj = await dr.json();
   if(radj.data!==undefined){
     for(const radf of radj.data.videos){
+      mi.push(radf.play);
       let dur=(radf.duration>0)?radf.duration:0;
       let atl=(radf.size>0)?"🎡 "+hfz(radf.size)+" - 👁 "+radf.play_count.toLocaleString():"👁 "+radf.play_count.toLocaleString();
       var ct=uts(radf.create_time);
@@ -191,6 +194,33 @@ async function red(s,u){
 function hf(size) {
     var i = size == 0 ? 0 : Math.floor(Math.log(size) / Math.log(1024));
     return (size / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
+}
+function ss(){
+    var e=$('#wow').attr('index');
+    e=(e>=mi.length||e=='')?0:e;
+    $('#light').fadeIn(200);
+    // $('#light').css({'background':'linear-gradient(90deg,rgba(255,0,0,.3), rgba(0,0,0,1), rgba(0,0,255,.3)), url('+im['videos'][e].origin_cover+') center','background-size':'contain'});
+    $('#wow').attr({'src':mi[e],'index':e,'loop':false}).on('ended',function(){
+        e++;
+        // if(im.videos !== undefined && e>=(im.videos.length-1) && im.hasMore==true){
+        //     $.post(window.location, {cs: im.cursor}, function(data) {
+        //         if(data!=="Habis"){
+        //             data = $.parseJSON(data);
+        //             im.cursor=data.cursor;
+        //             im.hasMore=data.hasMore;
+        //             for(i=0;i<data['videos'].length;i++){
+        //                 if(JSON.stringify(im.videos).includes(data['videos'][i].video_id)!==true){
+        //                     im['videos'].push(data['videos'][i])
+        //                 }
+        //             }
+        //         }
+        //     });
+        // }
+        // $('#light').css({'background':'linear-gradient(90deg,rgba(255,0,0,.3), rgba(0,0,0,1), rgba(0,0,255,.3)), url('+im['videos'][e].origin_cover+') center','background-size':'contain'});
+        e=(e>=mi.length||e=='')?0:e;
+        $('#wow').attr({'src':mi[e],'index':e});
+    });
+    $('#wow').css('transform','translate(0px) scale(1)');
 }
 $(document).ready(function(){
   $('meta[property="og:url"]').attr('content', location.href);
