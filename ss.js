@@ -18,7 +18,7 @@ function los(os,f){
 }
 function changeVideoSource(blob,f) {
   var blobUrl = URL.createObjectURL(blob);
-  console.log(`Changing video source to blob URL "${blobUrl}"`)
+  // console.log(`Changing video source to blob URL "${blobUrl}"`)
   var a = document.createElement("a");
   a.href = blobUrl;
   a.setAttribute("download", f);
@@ -114,7 +114,7 @@ async function rad(){
 }
 async function rud(u,c){
   c=c??0;
-  let rd = await fetch('https://www.tikwm.com/api/user/posts?unique_id='+u+'&count=4&cursor='+c);
+  let rd = await fetch('https://www.tikwm.com/api/user/posts?unique_id='+u+'&count=14&cursor='+c);
   let radj = await rd.json();
   if(radj.data!==undefined){
     for(const radf of radj.data.videos){
@@ -186,7 +186,7 @@ async function red(s,u){
       $('#link').prepend("<a target='_blank' onclick='event.preventDefault();dl(\""+el.url+"\",\""+im.uploader+"-"+im.id+".mp4\")' href='"+el.url+"' note='"+el.format_note+"' download='"+im.uploader+"-"+im.id+"'>"+el.resolution+"-"+hf(el.filesize)+"<br/>("+el.vcodec+")</a>");
       $('#res').fadeOut();$('#ult').fadeIn();
     })
-    let ttl=(im.fulltitle==null||im.fulltitle=="")?"No Title":im.fulltitle;console.log(ttl);
+    let ttl=(im.fulltitle==null||im.fulltitle=="")?"No Title":im.fulltitle;
     document.title=ttl+" - "+im.uploader+" - "+im.id+" - "+uts(im.timestamp)+" - User video search - Network Reverse";
     $('meta[property="og:title"]').attr('content', im.uploader+' - '+ttl+' - '+im.id+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
     $('meta[name="twitter:title"]').attr('content', im.uploader+' - '+ttl+' - '+im.id+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
@@ -288,6 +288,10 @@ $(document).ready(function(){
               break;
           case 188:
               $('html,body').animate({scrollTop: document.body.scrollHeight},"slow");
+              break;
+          case 27:
+              $('#light,#up').fadeOut(500);
+              $('video').trigger('pause');
               break;
       }
     }
