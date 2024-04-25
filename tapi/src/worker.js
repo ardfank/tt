@@ -1,4 +1,5 @@
 // src/worker.js
+import index from "./index.html";
 async function readRequestBody(request) {
   const contentType = request.headers.get("content-type");
   if (contentType.includes("application/json")) {
@@ -206,7 +207,11 @@ var worker_default = {
 		return new Response(await bl, init);
       }
     }
-    return Response.redirect("https://tt.networkreverse.com/", 307);
+    return new Response(index, {
+		headers: {
+			"content-type": "text/html",
+		},
+	});
   }
 };
 export {
