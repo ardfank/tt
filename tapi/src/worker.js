@@ -207,6 +207,16 @@ var worker_default = {
 		return new Response(await bl, init);
       }
     }
+    const url = new URL(request.url);
+    if (url.pathname === "/ss.js") {
+		// You could also call a third party API here
+		const data = await import("./ss.js");
+		return new Response(data, {
+			headers: {
+				"content-type": "application/javascript; charset=utf-8",
+			},
+		});
+	}
     return new Response(index, {
 		headers: {
 			"content-type": "text/html",

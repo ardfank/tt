@@ -1,5 +1,5 @@
 var im;var mi=[];var us="";var cs=0;
-let region=navigator.languages[2]??navigator.languages[1]??'id';
+let region=(navigator.languages[2]!==undefined)?navigator.languages[2]:((navigator.languages[1]!==undefined)?navigator.languages[1]:'id');
 let query=getSearchOrHashBased(location.href);
 if(query.length>1){
   query=getJsonFromUrl(query);
@@ -124,7 +124,7 @@ async function rad(){
     let galb=document.getElementById('gal').getBoundingClientRect();
     let contb=document.getElementById('cont').getBoundingClientRect();
     if(contb.bottom>galb.bottom){
-      rad();
+      await rad();
     }
     cp();
   }
@@ -155,7 +155,7 @@ async function rud(u,c){
     let galb=document.getElementById('gal').getBoundingClientRect();
     let contb=document.getElementById('cont').getBoundingClientRect();
     if(contb.bottom>galb.bottom){
-      rud(u,radj.data.cursor);
+      await rud(u,radj.data.cursor);
     }
     cp();us=u;cs=radj.data.cursor;
   }
@@ -189,7 +189,7 @@ async function rsd(u,c){
     let galb=document.getElementById('gal').getBoundingClientRect();
     let contb=document.getElementById('cont').getBoundingClientRect();
     if(contb.bottom>galb.bottom){
-      rsd(u,radj.data.cursor);
+      await rsd(u,radj.data.cursor);
     }
     cp();us=u;cs=radj.data.cursor;
   }

@@ -1,6 +1,23 @@
 var im;var mi=[];var us="";var cs=0;
+let region=(navigator.languages[2]!==undefined)?navigator.languages[2]:((navigator.languages[1]!==undefined)?navigator.languages[1]:'id');
 let query=getSearchOrHashBased(location.href);
-let region=navigator.languages[2]??navigator.languages[1]??'id';
+if(query.length>1){
+  query=getJsonFromUrl(query);
+  if(query.q.includes('user:')){
+    document.title=query.q.replace('user:','')+" - User video search - Network Reverse";
+  }else{
+    document.title=query.q+" - video search - Network Reverse";
+  }
+};
+document.querySelector('meta[property="og:url"]').setAttribute('content', location.href);
+document.querySelector('meta[property="og:locale"]').setAttribute('content', navigator.languages[0]);
+document.querySelector('link[rel="canonical"]').setAttribute('href', location.href);
+document.querySelector('meta[name="twitter:title"]').setAttribute('content', document.title);
+document.querySelector('meta[property="og:title"]').setAttribute('content', document.title);
+document.querySelector('meta[name="description"]').setAttribute('content', document.title+'. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
+document.querySelector('meta[name="twitter:description"]').setAttribute('content', document.title+'. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
+document.querySelector('meta[property="og:description"]').setAttribute('content', document.title+'. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
+document.querySelector('meta[name="keywords"]').setAttribute('content', document.title.replace(/ /g,",")+',tiktok downloader,download tiktok without watermark,download video tiktok, download tiktok, free tiktok downloader');
 function cp(){
     $(".responsive").mouseenter(function(){
       $(this).children('.cp').fadeIn();
@@ -104,13 +121,13 @@ async function rad(){
       }
       $(window).off('resize scroll');
     });});
+    let galb=document.getElementById('gal').getBoundingClientRect();
+    let contb=document.getElementById('cont').getBoundingClientRect();
+    if(contb.bottom>galb.bottom){
+      await rad();
+    }
+    cp();
   }
-  let galb=document.getElementById('gal').getBoundingClientRect();
-  let contb=document.getElementById('cont').getBoundingClientRect();
-  if(contb.bottom>galb.bottom){
-    rad();
-  }
-  cp();
 }
 async function rud(u,c){
   c=c??0;
@@ -138,7 +155,7 @@ async function rud(u,c){
     let galb=document.getElementById('gal').getBoundingClientRect();
     let contb=document.getElementById('cont').getBoundingClientRect();
     if(contb.bottom>galb.bottom){
-      rud(u,radj.data.cursor);
+      await rud(u,radj.data.cursor);
     }
     cp();us=u;cs=radj.data.cursor;
   }
@@ -149,6 +166,8 @@ async function rsd(u,c){
   let dr = await fetch('https://www.tikwm.com/api/feed/search?keywords='+u+'&count=14&cursor='+c);
   let radj = await dr.json();
   if(radj.data!==undefined){
+    document.querySelector('meta[property="og:image"]').setAttribute("content", radj.data.videos[0].origin_cover);
+    document.querySelector('meta[name="twitter:image"]').setAttribute("content", radj.data.videos[0].origin_cover);
     for(const radf of radj.data.videos){
       if(radf.duration>0){
         mi.push([radf.play,radf.origin_cover]);
@@ -167,13 +186,13 @@ async function rsd(u,c){
       }
       $(window).off('resize scroll');
     });});
+    let galb=document.getElementById('gal').getBoundingClientRect();
+    let contb=document.getElementById('cont').getBoundingClientRect();
+    if(contb.bottom>galb.bottom){
+      await rsd(u,radj.data.cursor);
+    }
+    cp();us=u;cs=radj.data.cursor;
   }
-  let galb=document.getElementById('gal').getBoundingClientRect();
-  let contb=document.getElementById('cont').getBoundingClientRect();
-  if(contb.bottom>galb.bottom){
-    rsd(u,radj.data.cursor);
-  }
-  cp();us=u;cs=radj.data.cursor;
 }
 async function red(s,u){
   $('#gal').html("");
@@ -188,11 +207,14 @@ async function red(s,u){
     })
     let ttl=(im.fulltitle==null||im.fulltitle=="")?"No Title":im.fulltitle;
     document.title=ttl+" - "+im.uploader+" - "+im.id+" - "+uts(im.timestamp)+" - User video search - Network Reverse";
-    $('meta[property="og:title"]').attr('content', im.uploader+' - '+ttl+' - '+im.id+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
-    $('meta[name="twitter:title"]').attr('content', im.uploader+' - '+ttl+' - '+im.id+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
-    $('meta[property="og:description"]').attr('content', im.uploader+' - '+ttl+' - '+im.id+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
-    $('meta[name="twitter:description"]').attr('content', im.uploader+' - '+ttl+' - '+im.id+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
-    $('meta[name="description"]').attr('content', im.uploader+' - '+ttl+' - '+im.id+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
+    document.querySelector('meta[property="og:image"]').setAttribute("content", im.cover);
+    document.querySelector('meta[name="twitter:image"]').setAttribute("content", im.cover);
+    document.querySelector('meta[name="twitter:title"]').setAttribute('content', document.title);
+    document.querySelector('meta[property="og:title"]').setAttribute('content', document.title);
+    document.querySelector('meta[name="description"]').setAttribute('content', document.title+'. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
+    document.querySelector('meta[name="twitter:description"]').setAttribute('content', document.title+'. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
+    document.querySelector('meta[property="og:description"]').setAttribute('content', document.title+'. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
+    document.querySelector('meta[name="keywords"]').setAttribute('content', document.title.replace(/ /g,",")+',tiktok downloader,download tiktok without watermark,download video tiktok, download tiktok, free tiktok downloader');
     $('#pp').html("<div class='clearfix'/><h1>"+ttl+"</h1><h4><a href='?q=user:"+im.uploader+"'>@"+im.uploader+"</a> at "+uts(im.timestamp)+" | 👁 "+im.view_count.toLocaleString()+" ⭐ "+im.bodydance_score+"</h4>");
     $('#pr').html("<video preload='metadata' id='video' loop muted controls src='"+im.format[im.format.length-1].url+"' onerror='gg(this.videoHeight,im.format.length-1)' onloadedmetadata='gg(this.videoHeight,im.format.length-1)'></video>");
   });
@@ -229,7 +251,7 @@ function ss(id){
           if(idv!==null && idv[2]!==null){
             rud(idv[1],cs);
           }else if(query.q.includes('user:')){
-            rud(query.q.replace('user:',cs));
+            rud(query.q.replace('user:',''),cs);
           }else{
             rsd(query.q,cs);
           }
@@ -241,8 +263,6 @@ function ss(id){
     $('#wow').css('transform','translate(0px) scale(1)');
 }
 $(document).ready(function(){
-  $('meta[property="og:url"]').attr('content', location.href);
-  $('link[rel="canonical"]').attr('href', location.href);
   if(query.length>1){
     query=getJsonFromUrl(query);
   };
@@ -257,20 +277,20 @@ $(document).ready(function(){
       red(idv[2],idv[1]);
     }else if(query.q.includes('user:')){
       document.title=query.q.replace('user:','')+" - User video search - Network Reverse";
-      $('meta[name="twitter:title"]').attr('content', query.q.replace('user:','')+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
-      $('meta[property="og:title"]').attr('content', query.q.replace('user:','')+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
-      $('meta[name="description"]').attr('content', query.q.replace('user:','')+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
-      $('meta[name="twitter:description"]').attr('content', query.q.replace('user:','')+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
-      $('meta[property="og:description"]').attr('content', query.q.replace('user:','')+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
+      // $('meta[name="twitter:title"]').attr('content', query.q.replace('user:','')+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
+      // $('meta[property="og:title"]').attr('content', query.q.replace('user:','')+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
+      // $('meta[name="description"]').attr('content', query.q.replace('user:','')+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
+      // $('meta[name="twitter:description"]').attr('content', query.q.replace('user:','')+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
+      // $('meta[property="og:description"]').attr('content', query.q.replace('user:','')+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
       $('#res').fadeIn();
       rud(query.q.replace('user:',''));
     }else{
       document.title=query.q+" - video search - Network Reverse";
-      $('meta[name="og:title"]').attr('content', query.q+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
-      $('meta[name="twitter:title"]').attr('content', query.q+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
-      $('meta[name="description"]').attr('content', query.q+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
-      $('meta[name="twitter:description"]').attr('content', query.q+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
-      $('meta[name="og:description"]').attr('content', query.q+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
+      // $('meta[name="og:title"]').attr('content', query.q+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
+      // $('meta[name="twitter:title"]').attr('content', query.q+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
+      // $('meta[name="description"]').attr('content', query.q+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
+      // $('meta[name="twitter:description"]').attr('content', query.q+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
+      // $('meta[name="og:description"]').attr('content', query.q+' - Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, serach keyword, user search');
       $('#res').fadeIn();
       rsd(query.q);
     }

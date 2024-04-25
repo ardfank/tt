@@ -6,3 +6,6 @@ workers_dev = true
 [[routes]]
 pattern = "tt.networkreverse.com/tapi"
 zone_name = "networkreverse.com"
+
+[placement]
+mode = "smart"

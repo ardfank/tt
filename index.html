@@ -28,7 +28,7 @@
 <link rel="manifest" href="ff.webmanifest" />
 <title>Tiktok Video Downloader - Network Reverse</title>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="./ss.js"></script>
+<script type="text/javascript" src="https://tt.networkreverse.com/ss.js"></script>
 <style>
 body{background-color:#000;background-attachment:fixed;height:900px;color:#123;font: small calibri;background-image:radial-gradient(at 0 35%, #000 72%, #f80 74%,#fff 75%,#000 79%);}
 a{text-decoration:none;color:#f80}
@@ -115,15 +115,22 @@ header{position:sticky;top:0;z-index:99;text-align:center;scale:140%;width: 80vw
 #next{
 	right:0;
 }
-#prev>img,#next>img,#tut>img{
-	opacity:0;
+#tut>img{
+	opacity:0.1;
 	object-fit: contain;
     width: 100%;
+    height: 40%;
+    margin-top: 2%;
+}
+#prev>img,#next>img{
+	opacity:0.1;
+	object-fit: contain;
+    width: 40%;
     height: 100%;
 }
 #prev>img:hover,#next>img:hover,#tut>img:hover{
 	opacity:0.9;
-	transform: scale(0.5);
+	transform: scale(1.5);
 }
 #prev:hover,#next:hover,#tut:hover{
 	background:rgba(235,245,255,0.1);
