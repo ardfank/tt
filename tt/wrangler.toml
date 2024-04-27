@@ -1,0 +1,7 @@
+name = "tt"
+main = "src/worker.js"
+compatibility_date = "2024-04-26"
+workers_dev = true
+
+[placement]
+mode = "smart"

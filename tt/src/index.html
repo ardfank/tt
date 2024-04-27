@@ -1,0 +1,155 @@
+<style>
+body{background-color:#000;background-attachment:fixed;height:900px;color:#123;font: small calibri;background-image:radial-gradient(at 0 35%, #000 72%, #f80 74%,#fff 75%,#000 79%);}
+a{text-decoration:none;color:#f80}
+h4{border-top:1px dashed}
+#cont{
+/*     text-align:center; */
+    width:98vw;
+    min-height:100vh;
+/*     overflow:hidden; */
+}
+header{position:sticky;top:0;z-index:99;text-align:center;scale:140%;width: 80vw}
+#video{margin:0 auto}
+#link{
+    display: flex;
+    flex-flow: wrap;
+    text-align: center;
+    }
+#link a {
+    background: chocolate;
+    text-decoration: none;
+    margin: 5px;
+    padding: 5px;
+    font: 16px arial;
+    flex:auto;
+    border-radius: 5px;
+    color: aliceblue;
+}
+#pr{height:60vh;display:flex;flex:auto;width:100vw}
+#pp{
+    width: 100vw;
+    color: #f80;
+    margin: 10px;
+}
+#pr video{height:60vh;margin:5px;flex:auto;max-width:98vw}
+#ult{display:none}
+#gal{display:flex;flex-flow: wrap}
+.responsive {width:20vw;margin:5px auto;position:relative;border: 1px solid #f80;cursor:pointer}
+.responsive video{width:100%}
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.cp {
+    position: absolute;
+    padding:5px;
+    border-radius:0 5px 0 0;
+    bottom: 5px;
+    z-index: 88;
+    background: rgba(255,140,0,.8);
+    display:none;
+}
+#light{
+	display: none;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	position:fixed;
+	text-align: center;
+	z-index:999;
+}
+#light>video{
+	height: 100%;
+	width: 99%;
+	object-fit: contain;
+}
+#tut{
+	background:rgba(9,9,9,0);
+	position: absolute;
+	top:0;
+	height:10%;
+	cursor: pointer;
+	width:100%;
+}
+#prev,#next{
+	background:rgba(9,9,9,0);
+	position: absolute;
+	top:0;
+	width:10%;
+	cursor: pointer;
+	height:90%;
+}
+#next{
+	right:0;
+}
+#tut>img{
+	opacity:0.1;
+	object-fit: contain;
+    width: 100%;
+    height: 40%;
+    margin-top: 2%;
+}
+#prev>img,#next>img{
+	opacity:0.1;
+	object-fit: contain;
+    width: 40%;
+    height: 100%;
+}
+#prev>img:hover,#next>img:hover,#tut>img:hover{
+	opacity:0.9;
+	transform: scale(1.5);
+}
+#prev:hover,#next:hover,#tut:hover{
+	background:rgba(235,245,255,0.1);
+}
+@media only screen and (max-width: 900px) {
+  .responsive {
+	width: 47vw;
+/* 	height: 47vw; */
+  }
+  .cp {
+    display:block;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .responsive {
+	width: 94vw;
+/* 	height: 94vw; */
+  }
+  .cp {
+    display:block;
+  }
+}
+::-webkit-scrollbar{width:5px;height:5px;}::-webkit-scrollbar-track{background:gainsboro;border-radius:5px;}::-webkit-scrollbar-thumb{background:rgba(255,0,0,.5);border-radius:5px;}::-webkit-scrollbar-thumb:hover{background:#830;}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-713L1EE5Z3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-713L1EE5Z3');
+</script>
+
+</head>
+<body>
+<div id='cont'>
+<header><a href='/'>🏡 </a><a href='#' onclick='javascript:event.preventDefault();ss();'>▶️ </a><input id='vid' type='text' style='width:50vw;margin:10px auto' placeholder='Tiktok video url or search keyword...'></input></header>
+<div id='light'>
+<video id='wow' index=0 autoplay muted controls></video>
+<div id='tut' title='Close' onclick='javascript:tut();' class='icon'><img src='https://cdn.networkreverse.com/tt/icon/close.png'/></div>
+<div id='prev' onclick='javascript:prev(event);' class='icon'><img src='https://cdn.networkreverse.com/tt/icon/prev.png'/></div>
+<div id='next' onclick='javascript:next(event);' class='icon'><img src='https://cdn.networkreverse.com/tt/icon/next.png'/></div>
+</div>
+<div style="display:none;opacity:0.8;z-index:98;width:100%;height:99vh;position:fixed;top:0;left:0;padding-top:10px;text-align:center;background-image:radial-gradient(at 0 35%, #000 72%, #f80 74%,#fff 75%,#000 79%);" id='res'><img src='https://cdn.networkreverse.com/tt/loading.gif' style='margin-top:20vh;z-index:9' class='but'/></div>
+<div id='ult'><div id='pr'></div><div id='pp'></div>
+<div id='link'></div></div>
+<div id='gal'></div>
+</div>
+<div class='clearfix'></div>
+<footer style='text-align:center;position:relative;top:10px'><img src='https://cdn.networkreverse.com/tt/loading.gif'/></footer>
+</body>
+</html>
