@@ -222,9 +222,9 @@ function ss(id){
     $('#wow').attr({'src':mi[e][0],'index':e,'loop':false}).on('ended',function(){
         e++;
         if(mi[e]==undefined && e>=(mi.length-1)){
-          let idv=query.q.match(/https:\/\/www.tiktok.com\/(.*)\/video\/(\d+)/);
-          if(idv!==null && idv[2]!==null){
-            rud(idv[1],cs);
+          let idv=getTikTokIds(query.q);
+          if(idv!==null && idv.vid!==null){
+            rud(idv.uid,cs);
           }else if(query.q.includes('user:')){
             rud(query.q.replace('user:',''),cs);
           }else{
@@ -237,15 +237,28 @@ function ss(id){
     });
     $('#wow').css('transform','translate(0px) scale(1)');
 }
+function getTikTokIds(url) {
+    var regex = /(?:http[s]?:\/\/)?(?:www\.)?(?:tiktok\.com\/(?:@([\w.-]+)\/video\/(\d+)|v\/(\d+))|vt\.tiktok\.com\/(\w+)\/|[^\s]+)/;
+    var match = url.match(regex);
+    if (match) {
+        var uid = match[1] || match[4];
+        var vid = match[2] || match[3];
+        return { uid: uid, vid: vid };
+    } else {
+        return null;
+    }
+}
 $(document).ready(function(){
   if(!query.q){
     $('#res').fadeIn();
     rad();
   }else{
-    let idv=query.q.match(/https:\/\/www.tiktok.com\/(.*)\/video\/(\d+)/);
-    if(idv!==null && idv[2]!==null){
+    // let idv=query.q.match(/https:\/\/www.tiktok.com\/(.*)\/video\/(\d+)/);
+    console.log(query.q);
+    let idv=getTikTokIds(query.q);
+    if(idv!==null && idv.vid!==null){
       $('#res').show(0);
-      red(idv[2],idv[1]);
+      red(idv.vid,idv.uid);
     }else if(query.q.includes('user:')){
       $('#res').fadeIn();
       rud(query.q.replace('user:',''));
