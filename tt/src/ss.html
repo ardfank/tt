@@ -253,8 +253,6 @@ $(document).ready(function(){
     $('#res').fadeIn();
     rad();
   }else{
-    // let idv=query.q.match(/https:\/\/www.tiktok.com\/(.*)\/video\/(\d+)/);
-    console.log(query.q);
     let idv=getTikTokIds(query.q);
     if(idv!==null && idv.vid!==null){
       $('#res').show(0);
