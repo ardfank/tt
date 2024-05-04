@@ -274,6 +274,19 @@ var worker_default = {
 			},
 		});
 	}
+    if (url.pathname === "/robots.txt") {
+		let man='User-agent: Mediapartners-Google\n\
+Disallow: \n\
+\n\
+User-agent: *\n\
+Disallow: /search\n\
+Allow: /';
+		return new Response(man, {
+			headers: {
+				"content-type": "text/plain; charset=UTF-8",
+			},
+		});
+	}
 	let ttl="Tiktok Video Downloader - Network Reverse";
 	let mdes="Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, search keyword, user search";
 	let mkey="tiktok downloader,download tiktok without watermark,download video tiktok, download tiktok, free tiktok downloader";
