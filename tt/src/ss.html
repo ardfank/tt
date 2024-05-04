@@ -223,7 +223,7 @@ function ss(id){
         e++;
         if(mi[e]==undefined && e>=(mi.length-1)){
           let idv=getTikTokIds(query.q);
-          if(idv!==null && idv.vid!==null){
+          if(idv!==undefined && idv.vid!==undefined){
             rud(idv.uid,cs);
           }else if(query.q.includes('user:')){
             rud(query.q.replace('user:',''),cs);
@@ -254,7 +254,7 @@ $(document).ready(function(){
     rad();
   }else{
     let idv=getTikTokIds(query.q);
-    if(idv!==null && idv.vid!==null){
+    if(idv!==undefined && idv.vid!==undefined){
       $('#res').show(0);
       red(idv.vid,idv.uid);
     }else if(query.q.includes('user:')){
