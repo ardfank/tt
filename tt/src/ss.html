@@ -86,7 +86,7 @@ function gg(s,t){
 }
 async function rad(){
   // $('#res').fadeIn();
-  let rd = await fetch('https://www.tikwm.com/api/feed/list?region='+region.replace('en','id')+'&count=14');
+  let rd = await fetch('https://www.tikwm.com/api/feed/list?region='+region.replace('en','id')+'&count=7');
   let radj = await rd.json();
   if(radj.data!==undefined){
     for(const radf of radj.data){
@@ -117,7 +117,7 @@ async function rad(){
 }
 async function rud(u,c){
   c=c??0;
-  let rd = await fetch('https://www.tikwm.com/api/user/posts?unique_id='+u+'&count=14&cursor='+c);
+  let rd = await fetch('https://www.tikwm.com/api/user/posts?unique_id='+u+'&count=7&cursor='+c);
   let radj = await rd.json();
   if(radj.data!==undefined){
     for(const radf of radj.data.videos){
@@ -149,7 +149,7 @@ async function rud(u,c){
 async function rsd(u,c){
   // $('#res').fadeIn();
   c=c??0;
-  let dr = await fetch('https://www.tikwm.com/api/feed/search?keywords='+u+'&count=14&cursor='+c);
+  let dr = await fetch('https://www.tikwm.com/api/feed/search?keywords='+u+'&count=7&cursor='+c);
   let radj = await dr.json();
   if(radj.data!==undefined){
     for(const radf of radj.data.videos){

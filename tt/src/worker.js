@@ -375,10 +375,10 @@ Allow: /';
 		<meta property='og:image' content='"+mimg+"'>\
 		<meta name='twitter:image' content='"+mimg+"'>\
 		<link rel='manifest' href='ff.webmanifest' />\
+		<meta name='theme-color' content='#B12A34'/>\
 		<title>"+ttl+"</title>\
-		<link rel='icon' type='image/x-icon' href='https://cdn.networkreverse.com/favicon.ico'>\
-		<script type='text/javascript'' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>"+ss;
-	let hin=nih+index;
+		<link rel='icon' type='image/x-icon' href='https://www.networkreverse.com/favicon.ico'>";
+	let hin=nih+index+"<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>"+ss+"</body></html>";
     return new Response(hin, {
 		headers: {
 			"content-type": "text/html;charset=UTF-8",
