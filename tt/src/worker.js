@@ -289,15 +289,20 @@ Allow: /';
 	}
 	if (url.pathname === "/fed") {
 		const fed = require('./feed.js');
-		let fedH="";
-		await fed.userf('https://www.tikwm.com/api/status',(g)=>{
-			fedH=g;
-		})
-		return new Response(fedH, {
-			headers: {
-				"content-type": "application/json; charset=UTF-8",
-			},
-		});
+		let query=getSearchOrHashBased(request.url);
+		console.log(query);
+		if(query.length>1){
+			query=getJsonFromUrl(query);
+			let fedH="";
+			await fed.userf(query.api,(g)=>{
+				fedH=g;
+			})
+			return new Response(fedH, {
+				headers: {
+					"content-type": "application/json; charset=UTF-8",
+				},
+			});
+		}
 	}
 	let ttl="Tiktok Video Downloader - Network Reverse";
 	let mdes="Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, search keyword, user search";
