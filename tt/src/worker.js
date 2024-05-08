@@ -295,7 +295,7 @@ Allow: /';
 		})
 		return new Response(fedH, {
 			headers: {
-				"content-type": "text/plain; charset=UTF-8",
+				"content-type": "application/json; charset=UTF-8",
 			},
 		});
 	}
