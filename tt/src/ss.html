@@ -258,7 +258,7 @@ function getTikTokIds(url) {
 $(document).ready(function(){
   if(!query.q){
     $('#res').fadeIn();
-    rad(5);
+    rad(9);
   }else{
     let idv=getTikTokIds(query.q);
     if(idv!==undefined && idv.vid!==undefined){
@@ -266,10 +266,10 @@ $(document).ready(function(){
       red(idv.vid,idv.uid);
     }else if(query.q.includes('user:')){
       $('#res').fadeIn();
-      rud(query.q.replace('user:',''),0,5);
+      rud(query.q.replace('user:',''),0,7);
     }else{
       $('#res').fadeIn();
-      rsd(query.q,0,5);
+      rsd(query.q,0,7);
     }
   }
   $('#vid').on('change',function(){
