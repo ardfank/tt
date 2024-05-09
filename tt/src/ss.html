@@ -87,9 +87,10 @@ function gg(s,t){
     $('#pr').html("<video preload='metadata' id='video' loop muted controls src='"+im.format[t-1].url+"' onerror='gg(this.videoHeight,"+(t-1)+")' onloadedmetadata='gg(this.videoHeight,"+(t-1)+")'></video>");
   }
 }
-async function rad(){
+async function rad(t){
   // $('#res').fadeIn();
-  let rd = await fetch('https://www.tikwm.com/api/feed/list?region='+region.replace('en','id')+'&count=9');
+  t=t??15;
+  let rd = await fetch('https://www.tikwm.com/api/feed/list?region='+region.replace('en','id')+'&count='+t);
   let radj = await rd.json();
   if(radj.data!==undefined){
     for(const radf of radj.data){
@@ -119,9 +120,9 @@ async function rad(){
     cp();
   }
 }
-async function rud(u,c){
-  c=c??0;
-  let rd = await fetch('https://www.tikwm.com/api/user/posts?unique_id='+u+'&count=9&cursor='+c);
+async function rud(u,c,t){
+  c=c??0;t=t??15;
+  let rd = await fetch('https://www.tikwm.com/api/user/posts?unique_id='+u+'&count='+t+'&cursor='+c);
   let radj = await rd.json();
   if(radj.data!==undefined){
     for(const radf of radj.data.videos){
@@ -151,10 +152,10 @@ async function rud(u,c){
     cp();us=u;cs=radj.data.cursor;
   }
 }
-async function rsd(u,c){
+async function rsd(u,c,t){
   // $('#res').fadeIn();
-  c=c??0;
-  let dr = await fetch('https://www.tikwm.com/api/feed/search?keywords='+u+'&count=9&cursor='+c);
+  c=c??0;t=t??15;
+  let dr = await fetch('https://www.tikwm.com/api/feed/search?keywords='+u+'&count='+t+'&cursor='+c);
   let radj = await dr.json();
   if(radj.data!==undefined){
     for(const radf of radj.data.videos){
@@ -199,7 +200,7 @@ async function red(s,u){
     $('#pp').html("<div class='clearfix'/><h1>"+ttl+"</h1><h4><a href='?q=user:"+im.uploader+"'>@"+im.uploader+"</a> at "+uts(im.timestamp)+" | 👁 "+im.view_count.toLocaleString()+" ⭐ "+im.bodydance_score+"</h4>");
     $('#pr').html("<video preload='metadata' id='video' loop muted controls src='"+im.format[im.format.length-1].url+"' onerror='gg(this.videoHeight,im.format.length-1)' onloadedmetadata='gg(this.videoHeight,im.format.length-1)'></video>");
   });
-  rud(u);
+  rud(u,0,5);
 }
 function hf(size) {
     var i = size == 0 ? 0 : Math.floor(Math.log(size) / Math.log(1024));
@@ -257,7 +258,7 @@ function getTikTokIds(url) {
 $(document).ready(function(){
   if(!query.q){
     $('#res').fadeIn();
-    rad();
+    rad(5);
   }else{
     let idv=getTikTokIds(query.q);
     if(idv!==undefined && idv.vid!==undefined){
@@ -265,10 +266,10 @@ $(document).ready(function(){
       red(idv.vid,idv.uid);
     }else if(query.q.includes('user:')){
       $('#res').fadeIn();
-      rud(query.q.replace('user:',''));
+      rud(query.q.replace('user:',''),0,5);
     }else{
       $('#res').fadeIn();
-      rsd(query.q);
+      rsd(query.q,0,5);
     }
   }
   $('#vid').on('change',function(){
