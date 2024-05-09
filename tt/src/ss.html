@@ -72,6 +72,9 @@ function getJsonFromUrl(query) {
   });
   return result;
 }
+function check(array, key, value) {
+  return array.some((object) => object[key] === value);
+}
 function hfz(size) {
     var i = (size == 0 || size == null) ? 0 : Math.floor(Math.log(size) / Math.log(1024));
     return (size / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
@@ -86,12 +89,13 @@ function gg(s,t){
 }
 async function rad(){
   // $('#res').fadeIn();
-  let rd = await fetch('https://www.tikwm.com/api/feed/list?region='+region.replace('en','id')+'&count=7');
+  let rd = await fetch('https://www.tikwm.com/api/feed/list?region='+region.replace('en','id')+'&count=9');
   let radj = await rd.json();
   if(radj.data!==undefined){
     for(const radf of radj.data){
-      if(radf.duration>0){
-        mi.push([radf.play,radf.origin_cover]);
+	  let cfv=check(mi,2,radf.video_id);
+      if(radf.duration>0 && cfv!==true){
+        mi.push([radf.play,radf.origin_cover,radf.video_id]);
         let dur=(radf.duration>0)?radf.duration:0;
         let atl=(radf.size>0)?"🎡 "+hfz(radf.size)+" - 👁 "+radf.play_count.toLocaleString():"👁 "+radf.play_count.toLocaleString();
         var ct=uts(radf.create_time);
@@ -117,12 +121,13 @@ async function rad(){
 }
 async function rud(u,c){
   c=c??0;
-  let rd = await fetch('https://www.tikwm.com/api/user/posts?unique_id='+u+'&count=7&cursor='+c);
+  let rd = await fetch('https://www.tikwm.com/api/user/posts?unique_id='+u+'&count=9&cursor='+c);
   let radj = await rd.json();
   if(radj.data!==undefined){
     for(const radf of radj.data.videos){
-      if(radf.duration>0){
-        mi.push([radf.play,radf.origin_cover]);
+	  let cfv=check(mi,2,radf.video_id);
+      if(radf.duration>0 && cfv!==true){
+        mi.push([radf.play,radf.origin_cover,radf.video_id]);
         let dur=(radf.duration>0)?radf.duration:0;
         let atl=(radf.size>0)?"🎡 "+hfz(radf.size)+" - 👁 "+radf.play_count.toLocaleString():"👁 "+radf.play_count.toLocaleString();
         var ct=uts(radf.create_time);
@@ -149,12 +154,13 @@ async function rud(u,c){
 async function rsd(u,c){
   // $('#res').fadeIn();
   c=c??0;
-  let dr = await fetch('https://www.tikwm.com/api/feed/search?keywords='+u+'&count=7&cursor='+c);
+  let dr = await fetch('https://www.tikwm.com/api/feed/search?keywords='+u+'&count=9&cursor='+c);
   let radj = await dr.json();
   if(radj.data!==undefined){
     for(const radf of radj.data.videos){
-      if(radf.duration>0){
-        mi.push([radf.play,radf.origin_cover]);
+      let cfv=check(mi,2,radf.video_id);
+      if(radf.duration>0 && cfv!==true){
+        mi.push([radf.play,radf.origin_cover,radf.video_id]);
         let dur=(radf.duration>0)?radf.duration:0;
         let atl=(radf.size>0)?"🎡 "+hfz(radf.size)+" - 👁 "+radf.play_count.toLocaleString():"👁 "+radf.play_count.toLocaleString();
         var ct=uts(radf.create_time);
