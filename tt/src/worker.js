@@ -289,17 +289,16 @@ Allow: /';
 	}
 	if (url.pathname === "/fed") {
 		const fed = require('./feed.js');
-		let query=getSearchOrHashBased(request.url);
-		console.log(query);
+		let query=url.search.split('?api=')[1];
 		if(query.length>1){
-			query=getJsonFromUrl(query);
 			let fedH="";
-			await fed.userf(query.api,(g)=>{
-				fedH=g;
+			await fed.userf(query,(g,k)=>{
+				fedH=k;
+				// console.log(g);
 			})
 			return new Response(fedH, {
 				headers: {
-					"content-type": "application/json; charset=UTF-8",
+					"content-type": "text/plain; charset=UTF-8",
 				},
 			});
 		}
