@@ -63,43 +63,153 @@ var worker_default = {
    */
   async fetch(request, env, ctx) {
 	  let apit = [
-		'api16-normal-c-alisg.tiktokv.com:7370095421781362209', // 5.55
-		'api16-normal-c-useast2a.tiktokv.com:7355728856979392262', // 5.26
-		'api16-normal-useast2a.tiktokv.com:7351144126450059040', // 5.08
-		'api16-normal-c-useast2a.tiktokv.com:7351144126450059040', // 3.77
-		'api19-normal-c-useast2a.tiktokv.com:7370097943049078561', // 3.57
-		'api22-normal-c.tiktokv.com:7370097943049078561', // 3.38
-		'api31-normal-useast2a.tiktokv.com:7351153174894626592', // 2.22
-		'api16-normal-c-useast2a.tiktokv.com:7370095421781362209', // 2.12
-		'api31-core-useast1a.tiktokv.com:7351149742343391009', // 2.12
-		'api16-normal-c.tiktokv.com:7370097943049078561', // 2
-		'api16-normal-c-alisg.tiktokv.com:7318518857994389254', // 1.75
-		'api16-normal-c-useast2a.tiktokv.com:7370097943049078561', // 1.85
-		'api16-normal-c.tiktokv.com:7318518857994389254', // 1.72
-		'api16-normal-c.tiktokv.com:7351144126450059040', // 1.88
-		'api16-normal-c.tiktokv.com:7351149742343391009', // 1.85
-		'api16-normal-c.tiktokv.com:7355728856979392262', // 1.78
-		'api16-normal-useast2a.tiktokv.com:7351149742343391009', // 2.04
-		'api16-normal-useast2a.tiktokv.com:7351153174894626592', // 2
-		'api16-normal-v4.tiktokv.com:7351149742343391009', // 1.88
-		'api16-normal-v4.tiktokv.com:7355728856979392262', // 1.75
-		'api19-normal-c-alisg.tiktokv.com:7351144126450059040', // 1.81
-		'api19-normal-c-alisg.tiktokv.com:7370097943049078561', // 1.78
-		'api19-normal-c-useast1a.tiktokv.com:7370095421781362209', // 1.92
-		'api19-normal-c-useast2a.tiktokv.com:7351153174894626592', // 1.88
-		'api19-normal-c-useast2a.tiktokv.com:7370095421781362209', // 1.81
-		'api22-normal-c-useast1a.tiktokv.com:7370095421781362209', // 1.92
-		'api22-normal-c-useast2a.tiktokv.com:7370095421781362209', // 1.92
-		'api22-normal-c-useast2a.tiktokv.com:7370097943049078561', // 1.69
-		'api22-normal-c.tiktokv.com:7318518857994389254', // 1.75
-		'api22-normal-c.tiktokv.com:7351153174894626592', // 1.69
-		'api22-normal-c.tiktokv.com:7355728856979392262', // 1.81
-		'api22-normal-c.tiktokv.com:7370095421781362209', // 1.78
-		'api22-normal-v4.tiktokv.com:7370095421781362209', // 1.75
-		'api31-normal-useast1a.tiktokv.com:7370095421781362209', // 1.81
-		'api31-normal-useast1a.tiktokv.com:7370097943049078561', // 1.81
-		'api31-normal-useast2a.tiktokv.com:7318518857994389254', // 1.66
-		'api31-normal-useast2a.tiktokv.com:7370095421781362209', // 1.85
+		'api16-normal-c-alisg.tiktokv.com:7318518857994389254', // 3.22
+		'api16-normal-c-alisg.tiktokv.com:7370095421781362209', // 6.66
+		'api16-normal-c-useast2a.tiktokv.com:7351144126450059040', // 3.38
+		'api16-normal-c-useast2a.tiktokv.com:7355728856979392262', // 4.68
+		'api16-normal-c-useast2a.tiktokv.com:7370095421781362209', // 2.08
+		'api16-normal-c-useast2a.tiktokv.com:7370097943049078561', // 1.66
+		'api16-normal-c.tiktokv.com:7318518857994389254', // 3.17
+		'api16-normal-c.tiktokv.com:7351144126450059040', // 1.75
+		'api16-normal-c.tiktokv.com:7351149742343391009', // 1.69
+		'api16-normal-c.tiktokv.com:7355728856979392262', // 1.63
+		'api16-normal-c.tiktokv.com:7370097943049078561', // 1.85
+		'api16-normal-useast2a.tiktokv.com:7351144126450059040', // 4.76
+		'api16-normal-useast2a.tiktokv.com:7351149742343391009', // 1.88
+		'api16-normal-useast2a.tiktokv.com:7351153174894626592', // 1.81
+		'api16-normal-v4.tiktokv.com:7351149742343391009', // 1.75
+		'api16-normal-v4.tiktokv.com:7355728856979392262', // 1.61
+		'api19-normal-c-alisg.tiktokv.com:7351144126450059040', // 3.22
+		'api19-normal-c-alisg.tiktokv.com:7370095421781362209', // 1.75
+		'api19-normal-c-alisg.tiktokv.com:7370097943049078561', // 1.66
+		'api19-normal-c-useast1a.tiktokv.com:7370095421781362209', // 1.78
+		'api19-normal-c-useast2a.tiktokv.com:7351153174894626592', // 1.72
+		'api19-normal-c-useast2a.tiktokv.com:7370095421781362209', // 1.61
+		'api19-normal-c-useast2a.tiktokv.com:7370097943049078561', // 3.22
+		'api22-normal-c-alisg.tiktokv.com:7351153174894626592', // 1.63
+		'api22-normal-c-useast1a.tiktokv.com:7370095421781362209', // 1.81
+		'api22-normal-c-useast2a.tiktokv.com:7370095421781362209', // 1.75
+		'api22-normal-c-useast2a.tiktokv.com:7370097943049078561', // 3.12
+		'api22-normal-c.tiktokv.com:7318518857994389254', // 1.63
+		'api22-normal-c.tiktokv.com:7351153174894626592', // 1.58
+		'api22-normal-c.tiktokv.com:7355728856979392262', // 3.33
+		'api22-normal-c.tiktokv.com:7370095421781362209', // 1.63
+		'api22-normal-c.tiktokv.com:7370097943049078561', // 3.22
+		'api22-normal-v4.tiktokv.com:7370095421781362209', // 1.58
+		'api31-normal-useast1a.tiktokv.com:7370097943049078561', // 1.61
+		'api31-normal-useast2a.tiktokv.com:7318518857994389254', // 1.51
+		'api31-normal-useast2a.tiktokv.com:7351153174894626592', // 2.08
+		'api31-normal-useast2a.tiktokv.com:7370095421781362209', // 1.69
+		'api16-core-c-useast1a.tiktokv.com:7318518857994389254', // 0
+		'api16-core-c-useast1a.tiktokv.com:7351144126450059040', // 0
+		'api16-core-c-useast1a.tiktokv.com:7351149742343391009', // 0
+		'api16-core-c-useast1a.tiktokv.com:7351153174894626592', // 0
+		'api16-core-c-useast1a.tiktokv.com:7355728856979392262', // 0
+		'api16-core-c-useast1a.tiktokv.com:7370095421781362209', // 0
+		'api16-core-c-useast1a.tiktokv.com:7370097943049078561', // 0
+		'api16-normal-c-alisg.tiktokv.com:7351144126450059040', // 0
+		'api16-normal-c-alisg.tiktokv.com:7351149742343391009', // 0
+		'api16-normal-c-alisg.tiktokv.com:7351153174894626592', // 0
+		'api16-normal-c-alisg.tiktokv.com:7355728856979392262', // 0
+		'api16-normal-c-alisg.tiktokv.com:7370097943049078561', // 0
+		'api16-normal-c-useast1a.tiktokv.com:7318518857994389254', // 0
+		// 'api16-normal-c-useast1a.tiktokv.com:7351144126450059040', // 0
+		// 'api16-normal-c-useast1a.tiktokv.com:7351149742343391009', // 0
+		// 'api16-normal-c-useast1a.tiktokv.com:7351153174894626592', // 0
+		// 'api16-normal-c-useast1a.tiktokv.com:7355728856979392262', // 0
+		// 'api16-normal-c-useast1a.tiktokv.com:7370095421781362209', // 0
+		// 'api16-normal-c-useast1a.tiktokv.com:7370097943049078561', // 0
+		// 'api16-normal-c-useast2a.tiktokv.com:7318518857994389254', // 0
+		// 'api16-normal-c-useast2a.tiktokv.com:7351149742343391009', // 0
+		// 'api16-normal-c-useast2a.tiktokv.com:7351153174894626592', // 0
+		// 'api16-normal-c.tiktokv.com:7351153174894626592', // 0
+		// 'api16-normal-c.tiktokv.com:7370095421781362209', // 0
+		// 'api31-core-useast1a.tiktokv.com:7351149742343391009', // 1.96
+		// 'api31-normal-useast1a.tiktokv.com:7370095421781362209', // 1.63
+		// 'api16-normal-useast1a.tiktokv.com:7318518857994389254', // 0
+		// 'api16-normal-useast1a.tiktokv.com:7351144126450059040', // 0
+		// 'api16-normal-useast1a.tiktokv.com:7351149742343391009', // 0
+		// 'api16-normal-useast1a.tiktokv.com:7351153174894626592', // 0
+		// 'api16-normal-useast1a.tiktokv.com:7355728856979392262', // 0
+		// 'api16-normal-useast1a.tiktokv.com:7370095421781362209', // 0
+		// 'api16-normal-useast1a.tiktokv.com:7370097943049078561', // 0
+		// 'api16-normal-useast2a.tiktokv.com:7318518857994389254', // 0
+		// 'api16-normal-useast2a.tiktokv.com:7355728856979392262', // 0
+		// 'api16-normal-useast2a.tiktokv.com:7370095421781362209', // 0
+		// 'api16-normal-useast2a.tiktokv.com:7370097943049078561', // 0
+		// 'api16-normal-v4.tiktokv.com:7318518857994389254', // 0
+		// 'api16-normal-v4.tiktokv.com:7351144126450059040', // 0
+		// 'api16-normal-v4.tiktokv.com:7351153174894626592', // 0
+		// 'api16-normal-v4.tiktokv.com:7370095421781362209', // 0
+		// 'api16-normal-v4.tiktokv.com:7370097943049078561', // 0
+		// 'api19-core-c-useast1a.tiktokv.com:7318518857994389254', // 0
+		// 'api19-core-c-useast1a.tiktokv.com:7351144126450059040', // 0
+		// 'api19-core-c-useast1a.tiktokv.com:7351149742343391009', // 0
+		// 'api19-core-c-useast1a.tiktokv.com:7351153174894626592', // 0
+		// 'api19-core-c-useast1a.tiktokv.com:7355728856979392262', // 0
+		// 'api19-core-c-useast1a.tiktokv.com:7370095421781362209', // 0
+		// 'api19-core-c-useast1a.tiktokv.com:7370097943049078561', // 0
+		// 'api19-normal-c-alisg.tiktokv.com:7318518857994389254', // 0
+		// 'api19-normal-c-alisg.tiktokv.com:7351149742343391009', // 0
+		// 'api19-normal-c-alisg.tiktokv.com:7351153174894626592', // 0
+		// 'api19-normal-c-alisg.tiktokv.com:7355728856979392262', // 0
+		// 'api19-normal-c-useast1a.tiktokv.com:7318518857994389254', // 0
+		// 'api19-normal-c-useast1a.tiktokv.com:7351144126450059040', // 0
+		// 'api19-normal-c-useast1a.tiktokv.com:7351149742343391009', // 0
+		// 'api19-normal-c-useast1a.tiktokv.com:7351153174894626592', // 0
+		// 'api19-normal-c-useast1a.tiktokv.com:7355728856979392262', // 0
+		// 'api19-normal-c-useast1a.tiktokv.com:7370097943049078561', // 0
+		// 'api19-normal-c-useast2a.tiktokv.com:7318518857994389254', // 0
+		// 'api19-normal-c-useast2a.tiktokv.com:7351144126450059040', // 0
+		// 'api19-normal-c-useast2a.tiktokv.com:7351149742343391009', // 0
+		// 'api19-normal-c-useast2a.tiktokv.com:7355728856979392262', // 0
+		// 'api22-normal-c-alisg.tiktokv.com:7318518857994389254', // 0
+		// 'api22-normal-c-alisg.tiktokv.com:7351144126450059040', // 0
+		// 'api22-normal-c-alisg.tiktokv.com:7351149742343391009', // 0
+		// 'api22-normal-c-alisg.tiktokv.com:7355728856979392262', // 0
+		// 'api22-normal-c-alisg.tiktokv.com:7370095421781362209', // 0
+		// 'api22-normal-c-alisg.tiktokv.com:7370097943049078561', // 0
+		// 'api22-normal-c-useast1a.tiktokv.com:7318518857994389254', // 0
+		// 'api22-normal-c-useast1a.tiktokv.com:7351144126450059040', // 0
+		// 'api22-normal-c-useast1a.tiktokv.com:7351149742343391009', // 0
+		// 'api22-normal-c-useast1a.tiktokv.com:7351153174894626592', // 0
+		// 'api22-normal-c-useast1a.tiktokv.com:7355728856979392262', // 0
+		// 'api22-normal-c-useast1a.tiktokv.com:7370097943049078561', // 0
+		// 'api22-normal-c-useast2a.tiktokv.com:7318518857994389254', // 0
+		// 'api22-normal-c-useast2a.tiktokv.com:7351144126450059040', // 0
+		// 'api22-normal-c-useast2a.tiktokv.com:7351149742343391009', // 0
+		// 'api22-normal-c-useast2a.tiktokv.com:7351153174894626592', // 0
+		// 'api22-normal-c-useast2a.tiktokv.com:7355728856979392262', // 0
+		// 'api22-normal-c.tiktokv.com:7351144126450059040', // 0
+		// 'api22-normal-c.tiktokv.com:7351149742343391009', // 0
+		// 'api22-normal-v4.tiktokv.com:7318518857994389254', // 0
+		// 'api22-normal-v4.tiktokv.com:7351144126450059040', // 0
+		// 'api22-normal-v4.tiktokv.com:7351149742343391009', // 0
+		// 'api22-normal-v4.tiktokv.com:7351153174894626592', // 0
+		// 'api22-normal-v4.tiktokv.com:7355728856979392262', // 0
+		// 'api22-normal-v4.tiktokv.com:7370097943049078561', // 0
+		// 'api31-core-useast1a.tiktokv.com:7318518857994389254', // 0
+		// 'api31-core-useast1a.tiktokv.com:7351144126450059040', // 0
+		// 'api31-core-useast1a.tiktokv.com:7351153174894626592', // 0
+		// 'api31-core-useast1a.tiktokv.com:7355728856979392262', // 0
+		// 'api31-core-useast1a.tiktokv.com:7370095421781362209', // 0
+		// 'api31-core-useast1a.tiktokv.com:7370097943049078561', // 0
+		// 'api31-normal-c-alisg.tiktokv.com:7318518857994389254', // 0
+		// 'api31-normal-c-alisg.tiktokv.com:7351144126450059040', // 0
+		// 'api31-normal-c-alisg.tiktokv.com:7351149742343391009', // 0
+		// 'api31-normal-c-alisg.tiktokv.com:7351153174894626592', // 0
+		// 'api31-normal-c-alisg.tiktokv.com:7355728856979392262', // 0
+		// 'api31-normal-c-alisg.tiktokv.com:7370095421781362209', // 0
+		// 'api31-normal-c-alisg.tiktokv.com:7370097943049078561', // 0
+		// 'api31-normal-useast1a.tiktokv.com:7318518857994389254', // 0
+		// 'api31-normal-useast1a.tiktokv.com:7351144126450059040', // 0
+		// 'api31-normal-useast1a.tiktokv.com:7351149742343391009', // 0
+		// 'api31-normal-useast1a.tiktokv.com:7351153174894626592', // 0
+		// 'api31-normal-useast1a.tiktokv.com:7355728856979392262', // 0
+		// 'api31-normal-useast2a.tiktokv.com:7351144126450059040', // 0
+		// 'api31-normal-useast2a.tiktokv.com:7351149742343391009', // 0
+		// 'api31-normal-useast2a.tiktokv.com:7355728856979392262', // 0
+		// 'api31-normal-useast2a.tiktokv.com:7370097943049078561', // 0
 	];
     if (request.method === "POST") {
       let reqBody = await readRequestBody(request);
@@ -120,20 +230,14 @@ var worker_default = {
             continue;
           }
         }
-		if(jres===undefined){
-			for (const g of apit) {
-				let pita = g.split(":");
-				res = await fetch("https://" + pita[0] + "/aweme/v1/feed/?iid=" + pita[1] + "&device_id=7318517321748022790&channel=googleplay&app_name=musical_ly&version_code=300904&device_platform=android&device_type=ASUS_Z01QD&os_version=9&aweme_id=" + vid);
-				try {
-					jres = await res.json();
-					if (jres.aweme_list[0].aweme_id === vid) {
-					break;
-					}
-				} catch (e) {
-					continue;
-				}
-			}
-		}
+		// if(jres===undefined){
+		// 	return new Response(JSON.stringify('Error'), {
+		// 		headers: {
+		// 			"Access-Control-Allow-Origin": "*",
+		// 			"Content-Type": "application/json;charset=utf-8"
+		// 		}
+		// 	});
+		// }
         var init = {
           headers: {
             "Access-Control-Allow-Origin": "*",
@@ -340,6 +444,7 @@ Allow: /';
 			});
 		}
 	}
+	let im;
 	let ttl="Tiktok Video Downloader - Network Reverse";
 	let mdes="Tiktok Video Downloader - Network Reverse. Download and preview Video from Tiktok without watermark with many different format, search keyword, user search";
 	let mkey="tiktok downloader,download tiktok without watermark,download video tiktok, download tiktok, free tiktok downloader";
@@ -361,6 +466,7 @@ Allow: /';
 				res = await fetch("https://" + pita[0] + "/aweme/v1/feed/?iid=" + pita[1] + "&device_id=7318517321748022790&channel=googleplay&app_name=musical_ly&version_code=300904&device_platform=android&device_type=ASUS_Z01QD&os_version=9&aweme_id=" + idv[2]);
 				try {
 				jres = await res.json();
+				// console.log(jres.aweme_list[0].aweme_id);
 				if (jres.aweme_list[0].aweme_id === idv[2]) {
 					break;
 				}
@@ -369,32 +475,141 @@ Allow: /';
 				}
 			}
 			if(jres===undefined){
-				for (const g of apit) {
-					console.log(g);
-					let pita = g.split(":");
-					res = await fetch("https://" + pita[0] + "/aweme/v1/feed/?iid=" + pita[1] + "&device_id=7318517321748022790&channel=googleplay&app_name=musical_ly&version_code=300904&device_platform=android&device_type=ASUS_Z01QD&os_version=9&aweme_id=" + idv[2]);
-					try {
-					jres = await res.json();
-					if (jres.aweme_list[0].aweme_id === idv[2]) {
-						break;
-					}
-					} catch (e) {
-					continue;
-					}
-				}
-			}
-			if(jres===undefined){
 				 return new Response('Network Error, please refresh.', {
 					headers: {
 						"content-type": "text/html;charset=UTF-8",
 					},
 				});
+			}else{
+	/////
+			let formats = [];
+			jres.aweme_list.forEach((element) => {
+			if (element.aweme_id === idv[2]) {
+				im = {
+				"id": element.aweme_id,
+				"uploader": element.author.unique_id,
+				"uploader_id": element.author.uid,
+				"fulltitle": element.desc ?? "",
+				"title": element.original_client_text ? element.original_client_text.markup_text : "",
+				"view_count": element.statistics.play_count ?? 0,
+				"timestamp": element.create_time ?? 1713330775,
+				"bodydance_score": element.bodydance_score ?? 0,
+				"cover": element.video.dynamic_cover.url_list[0] ?? "",
+				"format": []
+				};
+				if (typeof element.video.download_addr !== "undefined") {
+				element.video.download_addr.url_list.forEach((e) => {
+					if (check(formats, "url", e) === false) {
+					let format = {
+						"url": e,
+						"format_note": "Wmarked",
+						"vcodec": "h264 Wmarked",
+						"acodec": "AAC",
+						"format": element.video.download_addr.url_key,
+						"filesize": element.video.download_addr.data_size ?? 0,
+						"resolution": "~" + (element.video.play_addr.width ?? 0) + "x" + (element.video.play_addr.height ?? 0)
+					};
+					formats.push(format);
+					}
+				});
+				}
+				if (typeof element.video.misc_download_addrs !== "undefined") {
+				let misc = JSON.parse(element.video.misc_download_addrs);
+				misc.suffix_scene.url_list.forEach((e) => {
+					if (check(formats, "url", e) === false) {
+					let format = {
+						"url": e,
+						"format_note": "MISC",
+						"vcodec": "h264 Wmarked",
+						"acodec": "AAC",
+						"format": misc.suffix_scene.url_key,
+						"filesize": misc.suffix_scene.data_size ?? 0,
+						"resolution": "~" + (misc.suffix_scene.width ?? 0) + "x" + (misc.suffix_scene.height ?? 0)
+					};
+					formats.push(format);
+					}
+					;
+				});
+				}
+				if (typeof element.video.play_addr !== "undefined") {
+				element.video.play_addr.url_list.forEach((e) => {
+					if (check(formats, "url", e) === false) {
+					let format = {
+						"url": e,
+						"format_note": "Direct",
+						"format": element.video.play_addr.url_key,
+						"vcodec": "h264",
+						"acodec": "AAC",
+						"filesize": element.video.play_addr.data_size ?? 0,
+						"resolution": (element.video.play_addr.width ?? 0) + "x" + (element.video.play_addr.height ?? 0)
+					};
+					formats.push(format);
+					}
+				});
+				}
+				if (typeof element.video.play_addr_h264 !== "undefined") {
+				element.video.play_addr_h264.url_list.forEach((e) => {
+					if (check(formats, "url", e) === false) {
+					let format = {
+						"url": e,
+						"format_note": "H264",
+						"vcodec": "h264",
+						"acodec": "AAC",
+						"format": element.video.play_addr_h264.url_key,
+						"filesize": element.video.play_addr_h264.data_size ?? 0,
+						"resolution": "~" + (element.video.play_addr_h264.width ?? 0) + "x" + (element.video.play_addr_h264.height ?? 0)
+					};
+					formats.push(format);
+					}
+					;
+				});
+				}
+				if (typeof element.video.play_addr_bytevc1 !== "undefined") {
+				element.video.play_addr_bytevc1.url_list.forEach((e) => {
+					if (check(formats, "url", e) === false) {
+					let format = {
+						"url": e,
+						"format_note": "H265",
+						"vcodec": "h265",
+						"acodec": "AAC",
+						"format": element.video.play_addr_bytevc1.url_key,
+						"filesize": element.video.play_addr_bytevc1.data_size ?? 0,
+						"resolution": "~" + (element.video.play_addr_bytevc1.width ?? 0) + "x" + (element.video.play_addr_bytevc1.height ?? 0)
+					};
+					formats.push(format);
+					}
+					;
+				});
+				}
+				if (typeof element.video.bit_rate !== "undefined") {
+				element.video.bit_rate.forEach((f) => {
+					f.play_addr.url_list.forEach((e) => {
+					if (check(formats, "url", e) === false) {
+						let format = {
+						"url": e,
+						"format_note": "Bitrate",
+						"vcodec": "h265",
+						"acodec": "AAC",
+						"format": f.play_addr.url_key,
+						"filesize": f.play_addr.data_size ?? 0,
+						"resolution": (f.play_addr.width ?? 0) + "x" + (f.play_addr.height ?? 0)
+						};
+						formats.push(format);
+					}
+					;
+					});
+				});
+				}
 			}
-			ttl=(jres.aweme_list[0].desc==null||jres.aweme_list[0].desc=="")?"No Title":jres.aweme_list[0].desc;
-			ttl=jres.aweme_list[0].author.unique_id+" - "+ttl+" Tiktok Video Downloader - Network Reverse";
-			mdes=ttl+". Download and preview Video from Tiktok without watermark with many different format, search keyword, user search";
-			mkey=ttl.replace(/ /g,",")+",tiktok downloader,download tiktok without watermark,download video tiktok, download tiktok, free tiktok downloader";
-			mimg=(jres.aweme_list[0].video.cover.url_list[0]!==undefined)?jres.aweme_list[0].video.cover.url_list[0]:mimg;
+			});
+			im.format = formats;
+	/////
+				ttl=(jres.aweme_list[0].desc==null||jres.aweme_list[0].desc=="")?"No Title":jres.aweme_list[0].desc;
+				ttl=jres.aweme_list[0].author.unique_id+" - "+ttl+" Tiktok Video Downloader - Network Reverse";
+				mdes=ttl+". Download and preview Video from Tiktok without watermark with many different format, search keyword, user search";
+				mkey=ttl.replace(/ /g,",")+",tiktok downloader,download tiktok without watermark,download video tiktok, download tiktok, free tiktok downloader";
+				mimg=(jres.aweme_list[0].video.cover.url_list[0]!==undefined)?jres.aweme_list[0].video.cover.url_list[0]:mimg;
+			}
 		}else{
 			ttl=query.q+" - video search - Tiktok Video Downloader - Network Reverse";
 			mdes=ttl+". Download and preview Video from Tiktok without watermark with many different format, search keyword, user search";
@@ -432,7 +647,7 @@ Allow: /';
 		<meta name='theme-color' content='#B12A34'/>\
 		<title>"+ttl+"</title>\
 		<link rel='icon' type='image/x-icon' href='https://www.networkreverse.com/favicon.ico'>";
-	let hin=nih+index+"<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>"+ss+"</body></html>";
+	let hin=nih+index+"<div id='gal'></div></div><div class='clearfix'></div><footer style='text-align:center;position:relative;top:10px'><img src='https://cdn.networkreverse.com/tt/loading.gif' width='128px' height='128px' alt='Loading'/></footer><script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script><script>im="+JSON.stringify(im)+"</script>"+ss+"</body></html>";
     return new Response(hin, {
 		headers: {
 			"content-type": "text/html;charset=UTF-8",
