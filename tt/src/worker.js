@@ -62,6 +62,45 @@ var worker_default = {
    * @returns {Promise<Response>}
    */
   async fetch(request, env, ctx) {
+	  let apit = [
+		'api16-normal-c-alisg.tiktokv.com:7370095421781362209', // 5.55
+		'api16-normal-c-useast2a.tiktokv.com:7355728856979392262', // 5.26
+		'api16-normal-useast2a.tiktokv.com:7351144126450059040', // 5.08
+		'api16-normal-c-useast2a.tiktokv.com:7351144126450059040', // 3.77
+		'api19-normal-c-useast2a.tiktokv.com:7370097943049078561', // 3.57
+		'api22-normal-c.tiktokv.com:7370097943049078561', // 3.38
+		'api31-normal-useast2a.tiktokv.com:7351153174894626592', // 2.22
+		'api16-normal-c-useast2a.tiktokv.com:7370095421781362209', // 2.12
+		'api31-core-useast1a.tiktokv.com:7351149742343391009', // 2.12
+		'api16-normal-c.tiktokv.com:7370097943049078561', // 2
+		'api16-normal-c-alisg.tiktokv.com:7318518857994389254', // 1.75
+		'api16-normal-c-useast2a.tiktokv.com:7370097943049078561', // 1.85
+		'api16-normal-c.tiktokv.com:7318518857994389254', // 1.72
+		'api16-normal-c.tiktokv.com:7351144126450059040', // 1.88
+		'api16-normal-c.tiktokv.com:7351149742343391009', // 1.85
+		'api16-normal-c.tiktokv.com:7355728856979392262', // 1.78
+		'api16-normal-useast2a.tiktokv.com:7351149742343391009', // 2.04
+		'api16-normal-useast2a.tiktokv.com:7351153174894626592', // 2
+		'api16-normal-v4.tiktokv.com:7351149742343391009', // 1.88
+		'api16-normal-v4.tiktokv.com:7355728856979392262', // 1.75
+		'api19-normal-c-alisg.tiktokv.com:7351144126450059040', // 1.81
+		'api19-normal-c-alisg.tiktokv.com:7370097943049078561', // 1.78
+		'api19-normal-c-useast1a.tiktokv.com:7370095421781362209', // 1.92
+		'api19-normal-c-useast2a.tiktokv.com:7351153174894626592', // 1.88
+		'api19-normal-c-useast2a.tiktokv.com:7370095421781362209', // 1.81
+		'api22-normal-c-useast1a.tiktokv.com:7370095421781362209', // 1.92
+		'api22-normal-c-useast2a.tiktokv.com:7370095421781362209', // 1.92
+		'api22-normal-c-useast2a.tiktokv.com:7370097943049078561', // 1.69
+		'api22-normal-c.tiktokv.com:7318518857994389254', // 1.75
+		'api22-normal-c.tiktokv.com:7351153174894626592', // 1.69
+		'api22-normal-c.tiktokv.com:7355728856979392262', // 1.81
+		'api22-normal-c.tiktokv.com:7370095421781362209', // 1.78
+		'api22-normal-v4.tiktokv.com:7370095421781362209', // 1.75
+		'api31-normal-useast1a.tiktokv.com:7370095421781362209', // 1.81
+		'api31-normal-useast1a.tiktokv.com:7370097943049078561', // 1.81
+		'api31-normal-useast2a.tiktokv.com:7318518857994389254', // 1.66
+		'api31-normal-useast2a.tiktokv.com:7370095421781362209', // 1.85
+	];
     if (request.method === "POST") {
       let reqBody = await readRequestBody(request);
       let name = JSON.parse(reqBody);
@@ -69,28 +108,6 @@ var worker_default = {
         let vid = name.vid;
         let res;
         let jres;
-        let apit = [
-          "api19-normal-c-useast1a.tiktokv.com:7355728856979392262",
-          "api16-core-c-useast1a.tiktokv.com:7318518857994389254",
-          "api16-core-c-useast1a.tiktokv.com:7355728856979392262",
-          "api16-normal-c-alisg.tiktokv.com:7355728856979392262",
-          "api16-normal-c-alisg.tiktokv.com:7318518857994389254",
-          "api16-normal-c-useast1a.tiktokv.com:7318518857994389254",
-          "api16-normal-c-useast1a.tiktokv.com:7355728856979392262",
-          "api19-core-c-useast1a.tiktokv.com:7355728856979392262",
-          "api19-core-c-useast1a.tiktokv.com:7318518857994389254",
-          "api19-normal-c-alisg.tiktokv.com:7318518857994389254",
-          "api19-normal-c-alisg.tiktokv.com:7355728856979392262",
-          "api19-normal-c-useast1a.tiktokv.com:7318518857994389254",
-          "api22-normal-c-alisg.tiktokv.com:7355728856979392262",
-          "api22-normal-c-alisg.tiktokv.com:7318518857994389254",
-          "api22-normal-c-useast1a.tiktokv.com:7318518857994389254",
-          "api22-normal-c-useast1a.tiktokv.com:7355728856979392262",
-          "api31-core-useast1a.tiktokv.com:7355728856979392262",
-          "api31-core-useast1a.tiktokv.com:7318518857994389254",
-          "api31-normal-useast1a.tiktokv.com:7355728856979392262",
-          "api31-normal-useast1a.tiktokv.com:7318518857994389254"
-        ];
         for (const g of apit) {
           let pita = g.split(":");
           res = await fetch("https://" + pita[0] + "/aweme/v1/feed/?iid=" + pita[1] + "&device_id=7318517321748022790&channel=googleplay&app_name=musical_ly&version_code=300904&device_platform=android&device_type=ASUS_Z01QD&os_version=9&aweme_id=" + vid);
@@ -132,6 +149,7 @@ var worker_default = {
                     "url": e,
                     "format_note": "Wmarked",
                     "vcodec": "h264 Wmarked",
+					"acodec": "AAC",
                     "format": element.video.download_addr.url_key,
                     "filesize": element.video.download_addr.data_size ?? 0,
                     "resolution": "~" + (element.video.play_addr.width ?? 0) + "x" + (element.video.play_addr.height ?? 0)
@@ -148,6 +166,7 @@ var worker_default = {
                     "url": e,
                     "format_note": "MISC",
                     "vcodec": "h264 Wmarked",
+					"acodec": "AAC",
                     "format": misc.suffix_scene.url_key,
                     "filesize": misc.suffix_scene.data_size ?? 0,
                     "resolution": "~" + (misc.suffix_scene.width ?? 0) + "x" + (misc.suffix_scene.height ?? 0)
@@ -165,6 +184,7 @@ var worker_default = {
                     "format_note": "Direct",
                     "format": element.video.play_addr.url_key,
                     "vcodec": "h264",
+					"acodec": "AAC",
                     "filesize": element.video.play_addr.data_size ?? 0,
                     "resolution": (element.video.play_addr.width ?? 0) + "x" + (element.video.play_addr.height ?? 0)
                   };
@@ -179,6 +199,7 @@ var worker_default = {
                     "url": e,
                     "format_note": "H264",
                     "vcodec": "h264",
+					"acodec": "AAC",
                     "format": element.video.play_addr_h264.url_key,
                     "filesize": element.video.play_addr_h264.data_size ?? 0,
                     "resolution": "~" + (element.video.play_addr_h264.width ?? 0) + "x" + (element.video.play_addr_h264.height ?? 0)
@@ -195,6 +216,7 @@ var worker_default = {
                     "url": e,
                     "format_note": "H265",
                     "vcodec": "h265",
+					"acodec": "AAC",
                     "format": element.video.play_addr_bytevc1.url_key,
                     "filesize": element.video.play_addr_bytevc1.data_size ?? 0,
                     "resolution": "~" + (element.video.play_addr_bytevc1.width ?? 0) + "x" + (element.video.play_addr_bytevc1.height ?? 0)
@@ -212,6 +234,7 @@ var worker_default = {
                       "url": e,
                       "format_note": "Bitrate",
                       "vcodec": "h265",
+					  "acodec": "AAC",
                       "format": f.play_addr.url_key,
                       "filesize": f.play_addr.data_size ?? 0,
                       "resolution": (f.play_addr.width ?? 0) + "x" + (f.play_addr.height ?? 0)
@@ -318,29 +341,8 @@ Allow: /';
 		}else if(idv!==null && idv[2]!==null){
 			let res;
 			let jres;
-			let apit = [
-				"api19-normal-c-useast1a.tiktokv.com:7355728856979392262",
-				"api16-core-c-useast1a.tiktokv.com:7318518857994389254",
-				"api16-core-c-useast1a.tiktokv.com:7355728856979392262",
-				"api16-normal-c-alisg.tiktokv.com:7355728856979392262",
-				"api16-normal-c-alisg.tiktokv.com:7318518857994389254",
-				"api16-normal-c-useast1a.tiktokv.com:7318518857994389254",
-				"api16-normal-c-useast1a.tiktokv.com:7355728856979392262",
-				"api19-core-c-useast1a.tiktokv.com:7355728856979392262",
-				"api19-core-c-useast1a.tiktokv.com:7318518857994389254",
-				"api19-normal-c-alisg.tiktokv.com:7318518857994389254",
-				"api19-normal-c-alisg.tiktokv.com:7355728856979392262",
-				"api19-normal-c-useast1a.tiktokv.com:7318518857994389254",
-				"api22-normal-c-alisg.tiktokv.com:7355728856979392262",
-				"api22-normal-c-alisg.tiktokv.com:7318518857994389254",
-				"api22-normal-c-useast1a.tiktokv.com:7318518857994389254",
-				"api22-normal-c-useast1a.tiktokv.com:7355728856979392262",
-				"api31-core-useast1a.tiktokv.com:7355728856979392262",
-				"api31-core-useast1a.tiktokv.com:7318518857994389254",
-				"api31-normal-useast1a.tiktokv.com:7355728856979392262",
-				"api31-normal-useast1a.tiktokv.com:7318518857994389254"
-			];
 			for (const g of apit) {
+				// console.log(g);
 				let pita = g.split(":");
 				res = await fetch("https://" + pita[0] + "/aweme/v1/feed/?iid=" + pita[1] + "&device_id=7318517321748022790&channel=googleplay&app_name=musical_ly&version_code=300904&device_platform=android&device_type=ASUS_Z01QD&os_version=9&aweme_id=" + idv[2]);
 				try {
@@ -351,6 +353,43 @@ Allow: /';
 				} catch (e) {
 				continue;
 				}
+			}
+			if(jres===undefined){
+				for (const g of apit) {
+					console.log(g);
+					let pita = g.split(":");
+					res = await fetch("https://" + pita[0] + "/aweme/v1/feed/?iid=" + pita[1] + "&device_id=7318517321748022790&channel=googleplay&app_name=musical_ly&version_code=300904&device_platform=android&device_type=ASUS_Z01QD&os_version=9&aweme_id=" + idv[2]);
+					try {
+					jres = await res.json();
+					if (jres.aweme_list[0].aweme_id === idv[2]) {
+						break;
+					}
+					} catch (e) {
+					continue;
+					}
+				}
+			}
+			if(jres===undefined){
+				for (const g of apit) {
+					console.log(g);
+					let pita = g.split(":");
+					res = await fetch("https://" + pita[0] + "/aweme/v1/feed/?iid=" + pita[1] + "&device_id=7318517321748022790&channel=googleplay&app_name=musical_ly&version_code=300904&device_platform=android&device_type=ASUS_Z01QD&os_version=9&aweme_id=" + idv[2]);
+					try {
+					jres = await res.json();
+					if (jres.aweme_list[0].aweme_id === idv[2]) {
+						break;
+					}
+					} catch (e) {
+					continue;
+					}
+				}
+			}
+			if(jres===undefined){
+				 return new Response('Network Error, please refresh.', {
+					headers: {
+						"content-type": "text/html;charset=UTF-8",
+					},
+				});
 			}
 			ttl=(jres.aweme_list[0].desc==null||jres.aweme_list[0].desc=="")?"No Title":jres.aweme_list[0].desc;
 			ttl=jres.aweme_list[0].author.unique_id+" - "+ttl+" Tiktok Video Downloader - Network Reverse";
