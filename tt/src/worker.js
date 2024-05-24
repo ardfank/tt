@@ -120,6 +120,20 @@ var worker_default = {
             continue;
           }
         }
+		if(jres===undefined){
+			for (const g of apit) {
+				let pita = g.split(":");
+				res = await fetch("https://" + pita[0] + "/aweme/v1/feed/?iid=" + pita[1] + "&device_id=7318517321748022790&channel=googleplay&app_name=musical_ly&version_code=300904&device_platform=android&device_type=ASUS_Z01QD&os_version=9&aweme_id=" + vid);
+				try {
+					jres = await res.json();
+					if (jres.aweme_list[0].aweme_id === vid) {
+					break;
+					}
+				} catch (e) {
+					continue;
+				}
+			}
+		}
         var init = {
           headers: {
             "Access-Control-Allow-Origin": "*",
@@ -352,21 +366,6 @@ Allow: /';
 				}
 				} catch (e) {
 				continue;
-				}
-			}
-			if(jres===undefined){
-				for (const g of apit) {
-					console.log(g);
-					let pita = g.split(":");
-					res = await fetch("https://" + pita[0] + "/aweme/v1/feed/?iid=" + pita[1] + "&device_id=7318517321748022790&channel=googleplay&app_name=musical_ly&version_code=300904&device_platform=android&device_type=ASUS_Z01QD&os_version=9&aweme_id=" + idv[2]);
-					try {
-					jres = await res.json();
-					if (jres.aweme_list[0].aweme_id === idv[2]) {
-						break;
-					}
-					} catch (e) {
-					continue;
-					}
 				}
 			}
 			if(jres===undefined){
