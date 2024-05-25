@@ -63,153 +63,55 @@ var worker_default = {
    */
   async fetch(request, env, ctx) {
 	  let apit = [
-		'api16-normal-c-alisg.tiktokv.com:7318518857994389254', // 3.22
-		'api16-normal-c-alisg.tiktokv.com:7370095421781362209', // 6.66
-		'api16-normal-c-useast2a.tiktokv.com:7351144126450059040', // 3.38
-		'api16-normal-c-useast2a.tiktokv.com:7355728856979392262', // 4.68
-		'api16-normal-c-useast2a.tiktokv.com:7370095421781362209', // 2.08
-		'api16-normal-c-useast2a.tiktokv.com:7370097943049078561', // 1.66
-		'api16-normal-c.tiktokv.com:7318518857994389254', // 3.17
-		'api16-normal-c.tiktokv.com:7351144126450059040', // 1.75
-		'api16-normal-c.tiktokv.com:7351149742343391009', // 1.69
-		'api16-normal-c.tiktokv.com:7355728856979392262', // 1.63
-		'api16-normal-c.tiktokv.com:7370097943049078561', // 1.85
-		'api16-normal-useast2a.tiktokv.com:7351144126450059040', // 4.76
-		'api16-normal-useast2a.tiktokv.com:7351149742343391009', // 1.88
-		'api16-normal-useast2a.tiktokv.com:7351153174894626592', // 1.81
-		'api16-normal-v4.tiktokv.com:7351149742343391009', // 1.75
-		'api16-normal-v4.tiktokv.com:7355728856979392262', // 1.61
-		'api19-normal-c-alisg.tiktokv.com:7351144126450059040', // 3.22
-		'api19-normal-c-alisg.tiktokv.com:7370095421781362209', // 1.75
-		'api19-normal-c-alisg.tiktokv.com:7370097943049078561', // 1.66
-		'api19-normal-c-useast1a.tiktokv.com:7370095421781362209', // 1.78
-		'api19-normal-c-useast2a.tiktokv.com:7351153174894626592', // 1.72
-		'api19-normal-c-useast2a.tiktokv.com:7370095421781362209', // 1.61
-		'api19-normal-c-useast2a.tiktokv.com:7370097943049078561', // 3.22
-		'api22-normal-c-alisg.tiktokv.com:7351153174894626592', // 1.63
-		'api22-normal-c-useast1a.tiktokv.com:7370095421781362209', // 1.81
-		'api22-normal-c-useast2a.tiktokv.com:7370095421781362209', // 1.75
-		'api22-normal-c-useast2a.tiktokv.com:7370097943049078561', // 3.12
-		'api22-normal-c.tiktokv.com:7318518857994389254', // 1.63
-		'api22-normal-c.tiktokv.com:7351153174894626592', // 1.58
-		'api22-normal-c.tiktokv.com:7355728856979392262', // 3.33
-		'api22-normal-c.tiktokv.com:7370095421781362209', // 1.63
-		'api22-normal-c.tiktokv.com:7370097943049078561', // 3.22
-		'api22-normal-v4.tiktokv.com:7370095421781362209', // 1.58
-		'api31-normal-useast1a.tiktokv.com:7370097943049078561', // 1.61
-		'api31-normal-useast2a.tiktokv.com:7318518857994389254', // 1.51
-		'api31-normal-useast2a.tiktokv.com:7351153174894626592', // 2.08
-		'api31-normal-useast2a.tiktokv.com:7370095421781362209', // 1.69
-		'api16-core-c-useast1a.tiktokv.com:7318518857994389254', // 0
-		'api16-core-c-useast1a.tiktokv.com:7351144126450059040', // 0
-		'api16-core-c-useast1a.tiktokv.com:7351149742343391009', // 0
-		'api16-core-c-useast1a.tiktokv.com:7351153174894626592', // 0
-		'api16-core-c-useast1a.tiktokv.com:7355728856979392262', // 0
-		'api16-core-c-useast1a.tiktokv.com:7370095421781362209', // 0
-		'api16-core-c-useast1a.tiktokv.com:7370097943049078561', // 0
-		'api16-normal-c-alisg.tiktokv.com:7351144126450059040', // 0
-		'api16-normal-c-alisg.tiktokv.com:7351149742343391009', // 0
-		'api16-normal-c-alisg.tiktokv.com:7351153174894626592', // 0
-		'api16-normal-c-alisg.tiktokv.com:7355728856979392262', // 0
-		'api16-normal-c-alisg.tiktokv.com:7370097943049078561', // 0
-		'api16-normal-c-useast1a.tiktokv.com:7318518857994389254', // 0
-		// 'api16-normal-c-useast1a.tiktokv.com:7351144126450059040', // 0
-		// 'api16-normal-c-useast1a.tiktokv.com:7351149742343391009', // 0
-		// 'api16-normal-c-useast1a.tiktokv.com:7351153174894626592', // 0
-		// 'api16-normal-c-useast1a.tiktokv.com:7355728856979392262', // 0
-		// 'api16-normal-c-useast1a.tiktokv.com:7370095421781362209', // 0
-		// 'api16-normal-c-useast1a.tiktokv.com:7370097943049078561', // 0
-		// 'api16-normal-c-useast2a.tiktokv.com:7318518857994389254', // 0
-		// 'api16-normal-c-useast2a.tiktokv.com:7351149742343391009', // 0
-		// 'api16-normal-c-useast2a.tiktokv.com:7351153174894626592', // 0
-		// 'api16-normal-c.tiktokv.com:7351153174894626592', // 0
-		// 'api16-normal-c.tiktokv.com:7370095421781362209', // 0
-		// 'api31-core-useast1a.tiktokv.com:7351149742343391009', // 1.96
-		// 'api31-normal-useast1a.tiktokv.com:7370095421781362209', // 1.63
-		// 'api16-normal-useast1a.tiktokv.com:7318518857994389254', // 0
-		// 'api16-normal-useast1a.tiktokv.com:7351144126450059040', // 0
-		// 'api16-normal-useast1a.tiktokv.com:7351149742343391009', // 0
-		// 'api16-normal-useast1a.tiktokv.com:7351153174894626592', // 0
-		// 'api16-normal-useast1a.tiktokv.com:7355728856979392262', // 0
-		// 'api16-normal-useast1a.tiktokv.com:7370095421781362209', // 0
-		// 'api16-normal-useast1a.tiktokv.com:7370097943049078561', // 0
-		// 'api16-normal-useast2a.tiktokv.com:7318518857994389254', // 0
-		// 'api16-normal-useast2a.tiktokv.com:7355728856979392262', // 0
-		// 'api16-normal-useast2a.tiktokv.com:7370095421781362209', // 0
-		// 'api16-normal-useast2a.tiktokv.com:7370097943049078561', // 0
-		// 'api16-normal-v4.tiktokv.com:7318518857994389254', // 0
-		// 'api16-normal-v4.tiktokv.com:7351144126450059040', // 0
-		// 'api16-normal-v4.tiktokv.com:7351153174894626592', // 0
-		// 'api16-normal-v4.tiktokv.com:7370095421781362209', // 0
-		// 'api16-normal-v4.tiktokv.com:7370097943049078561', // 0
-		// 'api19-core-c-useast1a.tiktokv.com:7318518857994389254', // 0
-		// 'api19-core-c-useast1a.tiktokv.com:7351144126450059040', // 0
-		// 'api19-core-c-useast1a.tiktokv.com:7351149742343391009', // 0
-		// 'api19-core-c-useast1a.tiktokv.com:7351153174894626592', // 0
-		// 'api19-core-c-useast1a.tiktokv.com:7355728856979392262', // 0
-		// 'api19-core-c-useast1a.tiktokv.com:7370095421781362209', // 0
-		// 'api19-core-c-useast1a.tiktokv.com:7370097943049078561', // 0
-		// 'api19-normal-c-alisg.tiktokv.com:7318518857994389254', // 0
-		// 'api19-normal-c-alisg.tiktokv.com:7351149742343391009', // 0
-		// 'api19-normal-c-alisg.tiktokv.com:7351153174894626592', // 0
-		// 'api19-normal-c-alisg.tiktokv.com:7355728856979392262', // 0
-		// 'api19-normal-c-useast1a.tiktokv.com:7318518857994389254', // 0
-		// 'api19-normal-c-useast1a.tiktokv.com:7351144126450059040', // 0
-		// 'api19-normal-c-useast1a.tiktokv.com:7351149742343391009', // 0
-		// 'api19-normal-c-useast1a.tiktokv.com:7351153174894626592', // 0
-		// 'api19-normal-c-useast1a.tiktokv.com:7355728856979392262', // 0
-		// 'api19-normal-c-useast1a.tiktokv.com:7370097943049078561', // 0
-		// 'api19-normal-c-useast2a.tiktokv.com:7318518857994389254', // 0
-		// 'api19-normal-c-useast2a.tiktokv.com:7351144126450059040', // 0
-		// 'api19-normal-c-useast2a.tiktokv.com:7351149742343391009', // 0
-		// 'api19-normal-c-useast2a.tiktokv.com:7355728856979392262', // 0
-		// 'api22-normal-c-alisg.tiktokv.com:7318518857994389254', // 0
-		// 'api22-normal-c-alisg.tiktokv.com:7351144126450059040', // 0
-		// 'api22-normal-c-alisg.tiktokv.com:7351149742343391009', // 0
-		// 'api22-normal-c-alisg.tiktokv.com:7355728856979392262', // 0
-		// 'api22-normal-c-alisg.tiktokv.com:7370095421781362209', // 0
-		// 'api22-normal-c-alisg.tiktokv.com:7370097943049078561', // 0
-		// 'api22-normal-c-useast1a.tiktokv.com:7318518857994389254', // 0
-		// 'api22-normal-c-useast1a.tiktokv.com:7351144126450059040', // 0
-		// 'api22-normal-c-useast1a.tiktokv.com:7351149742343391009', // 0
-		// 'api22-normal-c-useast1a.tiktokv.com:7351153174894626592', // 0
-		// 'api22-normal-c-useast1a.tiktokv.com:7355728856979392262', // 0
-		// 'api22-normal-c-useast1a.tiktokv.com:7370097943049078561', // 0
-		// 'api22-normal-c-useast2a.tiktokv.com:7318518857994389254', // 0
-		// 'api22-normal-c-useast2a.tiktokv.com:7351144126450059040', // 0
-		// 'api22-normal-c-useast2a.tiktokv.com:7351149742343391009', // 0
-		// 'api22-normal-c-useast2a.tiktokv.com:7351153174894626592', // 0
-		// 'api22-normal-c-useast2a.tiktokv.com:7355728856979392262', // 0
-		// 'api22-normal-c.tiktokv.com:7351144126450059040', // 0
-		// 'api22-normal-c.tiktokv.com:7351149742343391009', // 0
-		// 'api22-normal-v4.tiktokv.com:7318518857994389254', // 0
-		// 'api22-normal-v4.tiktokv.com:7351144126450059040', // 0
-		// 'api22-normal-v4.tiktokv.com:7351149742343391009', // 0
-		// 'api22-normal-v4.tiktokv.com:7351153174894626592', // 0
-		// 'api22-normal-v4.tiktokv.com:7355728856979392262', // 0
-		// 'api22-normal-v4.tiktokv.com:7370097943049078561', // 0
-		// 'api31-core-useast1a.tiktokv.com:7318518857994389254', // 0
-		// 'api31-core-useast1a.tiktokv.com:7351144126450059040', // 0
-		// 'api31-core-useast1a.tiktokv.com:7351153174894626592', // 0
-		// 'api31-core-useast1a.tiktokv.com:7355728856979392262', // 0
-		// 'api31-core-useast1a.tiktokv.com:7370095421781362209', // 0
-		// 'api31-core-useast1a.tiktokv.com:7370097943049078561', // 0
-		// 'api31-normal-c-alisg.tiktokv.com:7318518857994389254', // 0
-		// 'api31-normal-c-alisg.tiktokv.com:7351144126450059040', // 0
-		// 'api31-normal-c-alisg.tiktokv.com:7351149742343391009', // 0
-		// 'api31-normal-c-alisg.tiktokv.com:7351153174894626592', // 0
-		// 'api31-normal-c-alisg.tiktokv.com:7355728856979392262', // 0
-		// 'api31-normal-c-alisg.tiktokv.com:7370095421781362209', // 0
-		// 'api31-normal-c-alisg.tiktokv.com:7370097943049078561', // 0
-		// 'api31-normal-useast1a.tiktokv.com:7318518857994389254', // 0
-		// 'api31-normal-useast1a.tiktokv.com:7351144126450059040', // 0
-		// 'api31-normal-useast1a.tiktokv.com:7351149742343391009', // 0
-		// 'api31-normal-useast1a.tiktokv.com:7351153174894626592', // 0
-		// 'api31-normal-useast1a.tiktokv.com:7355728856979392262', // 0
-		// 'api31-normal-useast2a.tiktokv.com:7351144126450059040', // 0
-		// 'api31-normal-useast2a.tiktokv.com:7351149742343391009', // 0
-		// 'api31-normal-useast2a.tiktokv.com:7355728856979392262', // 0
-		// 'api31-normal-useast2a.tiktokv.com:7370097943049078561', // 0
+		'api16-normal-c-useast2a.tiktokv.com:7351144126450059040',
+		'api16-normal-useast2a.tiktokv.com:7351144126450059040',
+		'api16-normal-c-useast2a.tiktokv.com:7355728856979392262',
+		'api22-normal-c-useast2a.tiktokv.com:7351144126450059040',
+		'api19-normal-c-useast2a.tiktokv.com:7370097943049078561',
+		'api16-normal-c-alisg.tiktokv.com:7370095421781362209',
+		'api16-normal-c-useast2a.tiktokv.com:7370097943049078561',
+		'api31-normal-useast2a.tiktokv.com:7318518857994389254',
+		'api16-normal-c.tiktokv.com:7370097943049078561',
+		'api16-normal-useast2a.tiktokv.com:7351149742343391009',
+		'api16-normal-useast2a.tiktokv.com:7351153174894626592',
+		'api19-normal-c-useast2a.tiktokv.com:7351144126450059040',
+		'api16-normal-c-alisg.tiktokv.com:7318518857994389254',
+		'api22-normal-c-useast2a.tiktokv.com:7370097943049078561',
+		'api16-normal-c.tiktokv.com:7318518857994389254',
+		'api31-normal-useast2a.tiktokv.com:7355728856979392262',
+		'api31-normal-useast2a.tiktokv.com:7370095421781362209',
+		'api16-normal-useast2a.tiktokv.com:7370097943049078561',
+		'api22-normal-c-useast1a.tiktokv.com:7355728856979392262',
+		'api22-normal-c.tiktokv.com:7355728856979392262',
+		'api16-normal-useast2a.tiktokv.com:7318518857994389254',
+		'api22-normal-c.tiktokv.com:7370097943049078561',
+		'api22-normal-c-useast2a.tiktokv.com:7370095421781362209',
+		'api16-normal-useast2a.tiktokv.com:7370095421781362209',
+		'api19-normal-c-alisg.tiktokv.com:7351144126450059040',
+		'api31-normal-useast2a.tiktokv.com:7351153174894626592',
+		'api31-normal-useast1a.tiktokv.com:7355728856979392262',
+		'api31-normal-useast1a.tiktokv.com:7370095421781362209',
+		'api31-normal-useast1a.tiktokv.com:7318518857994389254',
+		'api16-normal-c-useast2a.tiktokv.com:7370095421781362209',
+		'api16-normal-c.tiktokv.com:7351144126450059040',
+		'api22-normal-v4.tiktokv.com:7351149742343391009',
+		'api19-normal-c-useast2a.tiktokv.com:7370095421781362209',
+		'api22-normal-c-alisg.tiktokv.com:7351149742343391009',
+		'api16-normal-c-useast2a.tiktokv.com:7351153174894626592',
+		'api16-normal-v4.tiktokv.com:7355728856979392262',
+		'api19-normal-c-useast2a.tiktokv.com:7351149742343391009',
+		'api19-normal-c-useast2a.tiktokv.com:7355728856979392262',
+		'api22-normal-c-useast2a.tiktokv.com:7351153174894626592',
+		'api16-normal-c.tiktokv.com:7355728856979392262',
+		'api16-normal-v4.tiktokv.com:7351149742343391009',
+		'api19-normal-c-alisg.tiktokv.com:7351149742343391009',
+		'api22-normal-c-alisg.tiktokv.com:7370097943049078561',
+		'api22-normal-v4.tiktokv.com:7355728856979392262',
+		'api22-normal-c-useast2a.tiktokv.com:7318518857994389254',
+		'api22-normal-v4.tiktokv.com:7370095421781362209',
+		'api22-normal-v4.tiktokv.com:7351153174894626592',
+		'api16-normal-c-useast2a.tiktokv.com:7318518857994389254',
+		'api19-core-c-useast1a.tiktokv.com:7370095421781362209',
 	];
     if (request.method === "POST") {
       let reqBody = await readRequestBody(request);
@@ -475,7 +377,7 @@ Allow: /';
 				}
 			}
 			if(jres===undefined){
-				 return new Response('Network Error, please refresh.', {
+				 return new Response('Server busy, automatic reload in 5 sec.<script>setTimeout(function(){ location.reload(); }, 5000);</script>', {
 					headers: {
 						"content-type": "text/html;charset=UTF-8",
 					},
